@@ -1,0 +1,44 @@
+.nav-logo {
+    width: 20px;
+    margin: 10px 0 0 10px;;
+}
+nav .brand-logo {
+    font-size: 2em;
+    width: 90%;
+    text-align: center;
+}
+
+.dropdown-cover {
+    background-color: var(--main-color);
+    position: relative;
+    z-index: 2;
+}
+
+.dropdown-trigger:hover {
+    background-color: #E8C7B1;
+}
+
+.dropdown-trigger {
+    color: var(--grey);
+}
+
+.dropdown-content-T {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 126px;
+    right: 0;
+    top: -200px;
+    z-index: 1;
+    transition: top 1s ease-in-out;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5)
+}
+.dropped-down {
+    top: 64px;
+    transition: top 1s ease-in-out;
+    z-index: 1;
+}
+
+.dropdown-content-T li {
+    display: block;
+}

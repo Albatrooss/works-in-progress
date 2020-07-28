@@ -1,0 +1,4 @@
+div.MuiInputBase-root input.MuiInputBase-input,
+div.MuiInputBase-root input.MuiOutlinedInput-input {
+    border-bottom: none
+}

@@ -1,0 +1,10 @@
+.schedule {
+    width: 95%;
+    margin: 30px auto;
+    border: 1px solid var(--tan);
+    border-radius: 2px;
+}
+.schedule h5 {
+    margin: 0;
+    background-color: var(--peach);
+}

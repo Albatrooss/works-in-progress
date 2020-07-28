@@ -1,0 +1,6 @@
+footer {
+    text-align: center;
+    color: var(--white);
+    background-color: var(--dark);
+    height: 4vh;
+}
