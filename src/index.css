@@ -29,3 +29,11 @@ code {
 nav li a {
   color: var(--grey)
 }
+
+.main-background {
+  background-color: var(--main-color);
+}
+
+.my-text-dark {
+  color: var(--dark)
+}

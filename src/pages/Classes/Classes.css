@@ -1,0 +1,15 @@
+.classes-container {
+    text-align: center;
+}
+
+.card .card-action a.my-text-dark:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+    color: var(--dark);
+    
+}
+.card-action.classes-btn {
+    border-top: none
+}
+.btn.classes-btn {
+    font-size: 1em;
+    margin: 0
+}

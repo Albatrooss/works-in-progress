@@ -1,11 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function Dlass({ type, color }) {
+import { convertDate } from '../../utils/converters';
+
+export default function Dlass({ clss }) {
   return (
-    <Link to={'/' + type} >
-      <div style={{ backgroundColor: color }} >
-        <h4>Fun {type} Class</h4>
+    <Link to={'/class/' + clss._id} >
+      <div style={{ backgroundColor: 'white' }} >
+        <h4>{clss.name}</h4>
+        <p>DUE: {convertDate(clss.dueDate)}</p>
       </div>
     </Link>
   )

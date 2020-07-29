@@ -18,7 +18,6 @@ export default function Home() {
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut dolores obcaecati quia ipsa quasi eveniet, commodi accusantium? Distinctio nemo nisi adipisci enim explicabo nobis, nulla exercitationem dicta aliquid illum eveniet? <hr /><strong>Caitlin Elmslie - Director</strong></p>
         </div>
       </div>
-
     </div>
   )
 }

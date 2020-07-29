@@ -16,6 +16,7 @@ const upload = multer({
     bucket: 'works-in-progress-bucket',
     acl: 'public-read',
     contentType: function (req, file, cb) {
+      console.log('woot: ', file)
       cb(null, file.mimetype)
     },
     metadata: function (req, file, cb) {

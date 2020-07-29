@@ -18,15 +18,15 @@ import Test from './pages/test';
 
 import userService from './utils/userService';
 
-const schedule = [
-  [null, null, 'Tango'],
-  [null, null, 'Ballroom'],
-  ['Child Jazz', 'Child Tap', 'Child Ballet'],
-  [null, null, 'Tap'],
-  ['Musical Theatre', 'Heels', 'Jazz'],
-  ['Ballet', null, 'null'],
-  ['Tap', null, 'Jazz'],
-]
+// const schedule = [
+//   [null, null, 'Tango'],
+//   [null, null, 'Ballroom'],
+//   ['Child Jazz', 'Child Tap', 'Child Ballet'],
+//   [null, null, 'Tap'],
+//   ['Musical Theatre', 'Heels', 'Jazz'],
+//   ['Ballet', null, 'null'],
+//   ['Tap', null, 'Jazz'],
+// ]
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
@@ -34,7 +34,7 @@ function App() {
   let [user, setUser] = useState(null);
   let [dropped, setDropped] = useState(false);
 
-  let [test, setTest] = useState({ name: 'test' })
+  // let [test, setTest] = useState({ name: 'test' })
 
   const handleDrop = () => {
     setDropped(!dropped);
@@ -44,9 +44,9 @@ function App() {
     setUser(userService.getUser());
   }
 
-  const testClick = async () => {
-    setTest(await userService.test());
-  }
+  // const testClick = async () => {
+  //   setTest(await userService.test());
+  // }
 
   useEffect(() => {
     setUser(userService.getUser());
@@ -61,6 +61,7 @@ function App() {
             <Route exact path='/' component={Home} />
             <Route path='/about' component={About} />
             <Route path='/classes' component={Classes} />
+            <Route path='/collabs' component={Classes} />
             <Route path='/my-classes' component={MyClasses} />
             <Route path='/settings' component={Settings} />
             <Route path='/admin' component={Admin} />
@@ -74,8 +75,6 @@ function App() {
           </Switch>
         </BrowserRouter>
       </div>
-      {test.name}
-      <button className="btn" onClick={testClick}>TEST</button>
       <Footer />
     </>
   )

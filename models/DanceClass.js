@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const classSchema = new Schema({
   name: { type: String, required: true },
   dueDate: { type: Schema.Types.Date, required: true },
-  img: String,
+  description: { type: String, required: true },
+  video: String,
   instructor: { type: String, default: 'Caitline Elmslie' },
   enrolled: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 }, {

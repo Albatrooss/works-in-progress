@@ -22,7 +22,7 @@ const getAll = async (req, res) => {
   try {
     let classes = await DanceClass.find({ dueDate: { $gt: Date.now() } }).lean();
     if (classes.length > 0) {
-      classes.forEach(clss => clss.enrolled = clss.enrolled.length)
+      // classes.forEach(clss => clss.enrolled = clss.enrolled.length)
       res.json({ classes })
     } else {
       res.status(404).json({ err: 'No classes found' });
@@ -33,6 +33,7 @@ const getAll = async (req, res) => {
 }
 
 const add = async (req, res) => {
+  console.log(req.body)
   let newClass = new DanceClass(req.body);
   try {
     newClass.save();
