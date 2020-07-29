@@ -15,20 +15,25 @@ export default function Schedule() {
   const [classes, setClasses] = useState([]);
   const [message, setMessage] = useState('');
 
-  useEffect(async () => {
-    try {
-      let response = await classService.getAll();
-      setClasses(response.classes)
-    } catch (err) {
-      setMessage(err.message)
+  useEffect(() => {
+    async function effect() {
+      try {
+        let response = await classService.getAll();
+        setClasses(response.classes)
+      } catch (err) {
+        setMessage(err.message)
+      }
     }
+    effect();
   }, [])
 
   return (
-    <div className='schedule z-depth-2'>
-      <h5>UPCOMING CLASSES..</h5>
-      <p>{message}</p>
-      {classes.map(clss => <Dlass clss={clss} />)}
+    <div className="row">
+      <div className='schedule z-depth-2 col s12 l6 push-l3' style={{ padding: 0 }}>
+        <h5>AVAILABLE NOW</h5>
+        <p>{message}</p>
+        {classes.map(clss => <Dlass clss={clss} />)}
+      </div>
     </div>
   )
 }

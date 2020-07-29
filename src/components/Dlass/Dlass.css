@@ -1,0 +1,32 @@
+.dlass-container {
+    display: flex;
+    height: 50px;
+    border: 1px solid var(--dark);
+    margin: 5px;
+}
+.left-dlass {
+    width: 33.333%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--dark);
+    font-weight: bolder;
+    background-color: var(--peach);
+}
+.right-dlass {
+    width: 100%;
+    border-left: 1px solid var(--dark);
+    display: flex;
+    flex-direction: column;
+}
+.right-dlass p {
+    color: var(--dark);
+    margin: 0
+}
+.right-dlass p:first-child {
+    font-size: 1.3em;
+    font-weight: bolder;
+    border-bottom: 1px solid var(--dark);
+    background-color: var(--dark);
+    color: var(--white)
+}

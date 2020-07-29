@@ -8,7 +8,7 @@ const getAll = async () => {
     })
     return await response.json();
   } catch (err) {
-    return await err.json()
+    return await err
   }
 
 }

@@ -18,27 +18,11 @@ import Test from './pages/test';
 
 import userService from './utils/userService';
 
-// const schedule = [
-//   [null, null, 'Tango'],
-//   [null, null, 'Ballroom'],
-//   ['Child Jazz', 'Child Tap', 'Child Ballet'],
-//   [null, null, 'Tap'],
-//   ['Musical Theatre', 'Heels', 'Jazz'],
-//   ['Ballet', null, 'null'],
-//   ['Tap', null, 'Jazz'],
-// ]
-
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-
 function App() {
   let [user, setUser] = useState(null);
-  let [dropped, setDropped] = useState(false);
 
   // let [test, setTest] = useState({ name: 'test' })
 
-  const handleDrop = () => {
-    setDropped(!dropped);
-  }
 
   const handleSignupLogin = () => {
     setUser(userService.getUser());
@@ -54,17 +38,17 @@ function App() {
 
   return (
     <>
-      <NavBar dropped={dropped} handleClick={handleDrop} user={user} />
-      <div className='main-body'>
-        <BrowserRouter>
+      <BrowserRouter>
+        <NavBar user={user} />
+        <div className='main-body'>
           <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/about' component={About} />
-            <Route path='/classes' component={Classes} />
-            <Route path='/collabs' component={Classes} />
-            <Route path='/my-classes' component={MyClasses} />
-            <Route path='/settings' component={Settings} />
-            <Route path='/admin' component={Admin} />
+            <Route exact path='/' render={() => <Home user={user} />} />
+            <Route path='/about' render={() => <About user={user} />} />
+            <Route path='/classes' render={() => <Classes user={user} />} />
+            <Route path='/collabs' render={() => <Classes user={user} />} />
+            <Route path='/my-classes' render={() => <MyClasses user={user} />} />
+            <Route path='/settings' render={() => <Settings user={user} />} />
+            <Route path='/admin' render={() => <Admin user={user} />} />
             <Route path='/signup' render={({ history }) => <Signup history={history} handleSignUp={handleSignupLogin} />} />
             <Route path='/login' render={({ history }) => <Login history={history} handleLogin={handleSignupLogin} />} />
             <Route path='/logout' render={({ history }) => {
@@ -73,9 +57,9 @@ function App() {
             }} />
             <Route path='/test' component={Test} />
           </Switch>
-        </BrowserRouter>
-      </div>
-      <Footer />
+        </div>
+        <Footer />
+      </BrowserRouter>
     </>
   )
 }

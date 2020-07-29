@@ -34,8 +34,7 @@ export default function Navbar({ handleClick, dropped, user }) {
         <a href="/" className="brand-logo">WORKS IN PROGRESS</a>
         <ul className="right hide-on-med-and-down">
           <li><a href="/about">About</a></li>
-          <li><a href="/classes">Classes</a></li>
-          <li><a href="/collabs">Collabs</a></li>
+          <li><a href="classes">Classes</a></li>
           {/* <!-- Dropdown Trigger --> */}
           {dropdown}
         </ul>
