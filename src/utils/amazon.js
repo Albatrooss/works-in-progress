@@ -2,8 +2,8 @@ const BASE_URL = '/api/upload/';
 
 
 const uploadAndCreateDanceClass = async (data) => {
-  const formData = new FormData();
-  formData.append('image', data.file)
+  const formData = new FormData({ image: data.file });
+  console.log(formData)
   let response = await fetch(BASE_URL + 'class-video', {
     method: 'POST',
     headers: new Headers({ 'Content-Type': 'multipart/form-data' }),
@@ -24,6 +24,7 @@ const uploadAndCreateDanceClass = async (data) => {
       return classResponse.json();
     }
   }
+  return response.json()
 }
 
 export default {

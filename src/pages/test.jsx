@@ -22,7 +22,7 @@ export default function Test() {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      let answer = amazonService.uploadAndCreateDanceClass({ file, name, dueDate })
+      let answer = await amazonService.uploadAndCreateDanceClass({ file, name, dueDate })
       console.log(answer);
     } catch (err) {
       console.log(err)

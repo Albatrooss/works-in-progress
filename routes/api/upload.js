@@ -6,7 +6,7 @@ const upload = require('../../fileUpload')
 const singleUpload = upload.single('image');
 
 router.post('/class-video', (req, res) => {
-  console.log(req.body)
+  console.log(req.file)
   singleUpload(req, res, function (err) {
     if (err) {
       res.json(err)
