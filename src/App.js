@@ -80,7 +80,7 @@ function App() {
 
             {user &&
               <Route path='/admin' render={() => (
-                process.env.REACT_APP_ADMINS.split(' ').includes(user._id) ?
+                process.env.REACT_APP_ADMINS.split(' ').includes(user.username) ?
                   <Admin user={user} /> :
                   <h1 className="red-text denied">ACCESS DENIED</h1>
               )} />}

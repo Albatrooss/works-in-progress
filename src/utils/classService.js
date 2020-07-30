@@ -99,6 +99,13 @@ const getMine = async () => {
 }
 
 const updateOne = async (formData, clssId) => {
+  let body = {
+    name: formData.className ? formData.className : clssId.name,
+    instructor: formData.instructor ? formData.instructor : clssId.instructor,
+    description: formData.description ? formData.description : clssId.description,
+    type: formData.type ? formData.type : clssId.type,
+    name: formData.className ? formData.className : clssId.name,
+  }
   try {
     let response = await fetch(BASE_URL + 'update/' + clssId, {
       method: 'POST',

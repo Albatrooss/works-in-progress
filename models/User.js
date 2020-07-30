@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 
-const SALT_ROUNDS = 4;
+const SALT_ROUNDS = 6;
 
 const userSchema = new Schema({
   email: { type: String, required: true, unique: true },
@@ -31,6 +31,7 @@ userSchema.pre('save', function (next) {
 
 userSchema.methods.comparePassword = function (tryPassword, cb) {
   bcrypt.compare(tryPassword, this.password, function (err, isMatch) {
+    console.log(isMatch);
     if (err) return cb(err);
     cb(null, isMatch);
   });
