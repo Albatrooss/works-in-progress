@@ -92,6 +92,24 @@ const getMine = async (req, res) => {
   }
 }
 
+const updateOne = async (req, res) => {
+  try {
+    let updatedClass = await DanceClass.findOneAndUpdate({ _id: req.params.id }, {
+      $set: {
+        name: req.body.name,
+        instructor: req.body.instructor,
+        description: req.body.description,
+        dueDate: req.body.dueDate,
+        video: req.body.video,
+        type: req.body.type
+      }
+    });
+    res.json({ updatedClass })
+  } catch (err) {
+    res.status(500).json({ err })
+  }
+}
+
 const deleteOne = async (req, res) => {
   try {
     let deletedClass = await DanceClass.remove({ _id: req.params.id });
@@ -181,6 +199,7 @@ module.exports = {
   add,
   getOne,
   getMine,
+  updateOne,
   deleteOne,
   deleteAll,
   enroll,

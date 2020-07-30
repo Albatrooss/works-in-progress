@@ -60,14 +60,14 @@ export default function Admin(props) {
           <NewClassForm />
         </div>
       </div>
-      <h5 onClick={() => handleShowing('updateClass')}>Update a Class/Collab <i className="material-icons">arrow_drop_{whatsShowing.updateClass ? 'up' : 'down'}</i></h5>
-      <div className="row">
+      {/* <h5 onClick={() => handleShowing('updateClass')}>Update a Class/Collab <i className="material-icons">arrow_drop_{whatsShowing.updateClass ? 'up' : 'down'}</i></h5> */}
+      {/* <div className="row">
         <div className={whatsShowing.updateClass ? 'new-class showing col s12 l6 offset-l3' : 'new-class hidden col s12 l6 offset-l3'}>
           {classes.map(c => <div key={c._id} className={selecetedClass === c ? 'my-outline' : ''} onClick={() => handleUpdateSelect(c._id, 'd')}>{c.name}</div>)}
           {collabs.map(c => <div key={c._id} className={selecetedClass === c ? 'my-outline' : ''} onClick={() => handleUpdateSelect(c._id, 'c')}>{c.name}</div>)}
-          {selecetedClass._id && <UpdateClassForm clss={selecetedClass} type={selecetedClass.type} />}
+          {selecetedClass._id ? <UpdateClassForm hidden={false} clss={selecetedClass} type={selecetedClass.type} /> : <UpdateClassForm hidden={true} clss={null} type={'E'} />}
         </div>
-      </div>
+      </div> */}
     </div >
   )
 }

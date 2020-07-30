@@ -11,12 +11,6 @@ div.MuiInputBase-root input.MuiOutlinedInput-input {
     border-bottom: none
 }
 
-.create-class form {
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* align-items: center; */
-}
-
 .my-form-outline {
     position: relative;
 }
@@ -69,4 +63,15 @@ div.MuiInputBase-root input.MuiOutlinedInput-input {
 
 .my-outline {
     border: 2px solid red;
+}
+.admin .new-class .row.update-class {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .5s ease-in-out;
+}
+
+.admin .new-class .row.update-class.showing {
+    max-height: 750px;
+    overflow: hidden;
+    transition: max-height .5s ease-in-out;
 }

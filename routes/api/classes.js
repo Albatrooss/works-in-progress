@@ -8,6 +8,7 @@ router.post('/classes', classCtrl.getClasses);
 router.post('/collabs', classCtrl.getCollabs);
 router.post('/add', classCtrl.add);
 router.post('/my-classes', classCtrl.getMine)
+router.post('/update/:id', classCtrl.updateOne)
 router.post('/delete/:id', classCtrl.deleteOne)
 router.post('/delete/', classCtrl.deleteAll)
 

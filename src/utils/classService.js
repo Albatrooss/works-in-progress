@@ -98,6 +98,19 @@ const getMine = async () => {
   }
 }
 
+const updateOne = async (formData, clssId) => {
+  try {
+    let response = await fetch(BASE_URL + 'update/' + clssId, {
+      method: 'POST',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify(formData)
+    })
+    return await response.json();
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
+
 export default {
   getAll,
   getAllAdmin,
@@ -105,5 +118,6 @@ export default {
   getCollabs,
   getOne,
   enroll,
-  getMine
+  getMine,
+  updateOne
 }
