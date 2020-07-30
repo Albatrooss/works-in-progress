@@ -1,26 +1,25 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 import '../Navbar/Navbar.css';
-import userService from '../../utils/userService';
 
 export default function Navbar({ handleClick, dropped, user }) {
 
-  const handleLogout = () => {
-    console.log('logout');
-    userService.logout();
+  const [navExpanded, setNavExpanded] = useState(false)
+
+
+  const expandNav = () => {
+    setNavExpanded(!navExpanded)
+  }
+
+  const handleLink = () => {
+    setNavExpanded(false);
   }
 
   let dropdown = user ?
     <>
-      <li>
-        <div className="dropdown-trigger dropdown-cover" href="#!" onClick={handleClick}>{user.username}<i className="material-icons right">arrow_drop_down</i></div>
-        <ul className={dropped ? 'dropdown-content-T dropped-down' : 'dropdown-content-T'}>
-          <li><a href="/my-classes">My Classes</a></li>
-          <li><a href="/settings">Settings</a></li>
-          <li className="divider"></li>
-          <li><a href="/logout">Logout</a></li>
-        </ul>
-      </li>
+      <li><Link to="/my-classes"><span onClick={handleLink}>My Classes</span></Link></li>
+      <li><a href="/logout">Logout</a></li>
     </> :
     <>
       <li><a href="/login">Login</a></li>
@@ -32,13 +31,20 @@ export default function Navbar({ handleClick, dropped, user }) {
       <div className="nav-wrapper">
         <img src="Logo-01.png" alt="logo" className="nav-logo" />
         <a href="/" className="brand-logo">WORKS IN PROGRESS</a>
-        <ul className="right hide-on-med-and-down">
-          <li><a href="/about">About</a></li>
-          <li><a href="classes">Classes</a></li>
-          {/* <!-- Dropdown Trigger --> */}
+        <ul className="right nav-items">
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/classes">Classes</Link></li>
           {dropdown}
         </ul>
       </div>
+      <div className={`${navExpanded ? 'showing' : ''} hidden-nav-wrapper`}>
+        <ul className="hidden-ul">
+          <li><Link to="/about"><span onClick={handleLink}>About</span></Link></li>
+          <li><Link to="/classes"><span onClick={handleLink}>Classes</span></Link></li>
+          {dropdown}
+        </ul>
+      </div>
+      <div className="nav-burger" onClick={expandNav}><i className="material-icons">menu</i></div>
     </nav>
   )
 }

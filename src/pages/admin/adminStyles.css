@@ -1,4 +1,68 @@
+.admin {
+    text-align: center;
+}
+
+.admin h5:hover {
+    cursor: pointer;
+}
+
 div.MuiInputBase-root input.MuiInputBase-input,
 div.MuiInputBase-root input.MuiOutlinedInput-input {
     border-bottom: none
+}
+
+.create-class form {
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: center; */
+}
+
+.my-form-outline {
+    position: relative;
+}
+.my-form-outline.hidden {
+    display: none;
+}
+
+.row form .my-form-outline > div {
+    position: absolute;
+    left: 20px;
+    top: -10px;
+    background-color: var(--white);
+    color: var(--dark);
+    padding: 0 5px;
+}
+
+.row form .my-form-outline > *:not(div) {
+    border: 1px solid var(--dark);
+    border-radius: 3px;
+    padding-left: 10px;
+}
+
+.row form .my-form-outline > textarea {
+    height: 100px;
+    padding-top: 10px;
+}
+
+.my-form-outline input[type="file"] {
+    padding: 11px 0 11px 20px;
+    width: 100%
+}
+.row form .my-create-class-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.new-class.showing {
+    overflow: hidden;
+    max-height: 750px;
+    border-bottom: 2px solid var(--dark);
+    transition: max-height .5s ease-in-out;
+}
+
+.new-class.hidden {
+    overflow: hidden;
+    border-bottom: 2px solid var(--dark);
+    max-height: 0;
+    transition: max-height .5s ease-in-out;
 }

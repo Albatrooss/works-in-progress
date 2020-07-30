@@ -1,13 +1,12 @@
 import React from 'react';
 
 import Schedule from '../../components/Schedule/Schedule';
-import About from '../../pages/About/About'
 
 export default function Home() {
   return (
     <div className='home center-align'>
       <Schedule />
-      <img src="https://i.kinja-img.com/gawker-media/image/upload/c_scale,f_auto,fl_progressive,pg_1,q_80,w_800/ezbjlivvzlmssnrhvklb.jpg" alt="photo" style={{ maxWidth: '100%' }} />
+      <img src="https://i.kinja-img.com/gawker-media/image/upload/c_scale,f_auto,fl_progressive,pg_1,q_80,w_800/ezbjlivvzlmssnrhvklb.jpg" alt="Fred + Ginger" style={{ maxWidth: '100%' }} />
       <p className='fred-quote'>I just put my feet in the air and move them around.</p>
       <p className='fred-quote quote-right'>-Fred Astaire</p>
       <hr />

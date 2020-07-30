@@ -1,39 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { TextField, Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles'
+import React, { useState } from 'react';
 import NewClassForm from './newClassForm';
 
-import adminStyles from './adminStyles.css';
+import './adminStyles.css';
 
-// const useStyles = makeStyles({
-//   root: {
-//     ba
-//   }
-// })
 
-export default function admin(props) {
-  const teachers = [
-    'Caitlin Elmslie',
-    'Tim Robillard',
-    'Michelle D',
-    'Brianna Schneider'
-  ]
+export default function Admin(props) {
 
-  let date = new Date(Date.now());
-  let today = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}T${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+  const [whatsShowing, setWhatsShowing] = useState({
+    newClass: false
+  });
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    alert('clicked')
+  const handleShowing = (thing) => {
+    setWhatsShowing({
+      ...whatsShowing,
+      [thing]: !whatsShowing[thing]
+    })
   }
 
-  // let teacherSelects = .join('');
   return (
-    <>
+    <div className='admin'>
       <h1>ADMIN PAGE</h1>
-      <h5>Create a Class</h5>
-      <NewClassForm />
+      <h5 onClick={() => handleShowing('newClass')}>Create a Class/Collab <i className="material-icons">arrow_drop_{whatsShowing.newClass ? 'up' : 'down'}</i></h5>
+      <div className={whatsShowing.newClass ? 'new-class showing' : 'new-class hidden'}>
+        <NewClassForm />
+      </div>
 
-    </>
+    </div>
   )
 }

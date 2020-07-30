@@ -14,6 +14,7 @@ import MyClasses from './pages/Classes/MyClasses';
 import Signup from './pages/Signup/Signup'
 import Login from './pages/Signup/Login'
 import Admin from './pages/admin/admin'
+import ClassPage from './pages/ClassPage/ClassPage';
 import Test from './pages/test';
 
 import userService from './utils/userService';
@@ -43,7 +44,7 @@ function App() {
         <div className='main-body'>
           <Switch>
             <Route exact path='/' render={() => <Home user={user} />} />
-            <Route path='/about' render={() => <About user={user} />} />
+            <Route exact path='/about' render={() => <About user={user} />} />
             <Route path='/classes' render={() => <Classes user={user} />} />
             <Route path='/collabs' render={() => <Classes user={user} />} />
             <Route path='/my-classes' render={() => <MyClasses user={user} />} />
@@ -55,6 +56,7 @@ function App() {
               userService.logout();
               history.push('/');
             }} />
+            <Route path='/class/:id' render={() => <ClassPage user={user} />} />
             <Route path='/test' component={Test} />
           </Switch>
         </div>

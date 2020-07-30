@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const classSchema = new Schema({
-  type: { type: String, enum: ['C', 'D'], required: true },
+const collabSchema = new Schema({
   name: { type: String, required: true },
+  dueDate: { type: Schema.Types.Date, required: true },
   description: { type: String, required: true },
-  dueDate: Schema.Types.Date,
   video: String,
   instructor: { type: String, default: 'Caitline Elmslie' },
   enrolled: [{ type: Schema.Types.ObjectId, ref: 'User' }]
@@ -13,4 +12,4 @@ const classSchema = new Schema({
   timestamps: true
 })
 
-module.exports = mongoose.model('DanceClass', classSchema);
+module.exports = mongoose.model('collab', collabSchema);

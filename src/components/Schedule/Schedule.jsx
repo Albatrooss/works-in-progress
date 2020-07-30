@@ -5,11 +5,6 @@ import classService from '../../utils/classService';
 
 import Dlass from '../Dlass/Dlass'
 
-const colors = {
-  tap: '#A66A5D',
-  jazz: '#D9B4A7'
-}
-
 export default function Schedule() {
 
   const [classes, setClasses] = useState([]);
@@ -19,7 +14,12 @@ export default function Schedule() {
     async function effect() {
       try {
         let response = await classService.getAll();
-        setClasses(response.classes)
+        if (response.classes) {
+          setClasses(response.classes)
+        } else {
+          console.log(response)
+          setMessage(response.err)
+        }
       } catch (err) {
         setMessage(err.message)
       }

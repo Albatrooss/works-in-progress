@@ -20,7 +20,10 @@ const getLegacy = async (req, res) => {
 
 const getAll = async (req, res) => {
   try {
-    let classes = await DanceClass.find({ dueDate: { $gt: Date.now() } }).lean();
+    let collabs = await DanceClass.find({ dueDate: { $gt: Date.now() }, type: 'C' });
+    console.log('ocllabs: ', collabs)
+    let danceClasses = await DanceClass.find({ type: 'D' });
+    let classes = [...collabs, ...danceClasses];
     if (classes.length > 0) {
       // classes.forEach(clss => clss.enrolled = clss.enrolled.length)
       res.json({ classes })
@@ -45,8 +48,7 @@ const add = async (req, res) => {
 
 const getOne = async (req, res) => {
   try {
-    let danceClass = await DanceClass.findOne({ _id: req.params.id }).lean()
-    danceClass.enrolled = danceClass.enrolled.length;
+    let danceClass = await DanceClass.findOne({ _id: req.params.id })
     res.json(danceClass)
   } catch (err) {
     res.status(404).json({ message: 'Class not found..' })

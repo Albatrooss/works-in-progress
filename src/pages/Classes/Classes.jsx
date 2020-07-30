@@ -30,10 +30,12 @@ export default function Classes() {
 
   const [classes, setClasses] = useState([])
 
-  useEffect(async () => {
-    console.log(classService.getAll())
-    let temp = await classService.getAll();
-    setClasses(temp.classes);
+  useEffect(() => {
+    async function oneTime() {
+      let temp = await classService.getAll();
+      setClasses(temp.classes);
+    }
+    oneTime();
   }, [])
 
   return (

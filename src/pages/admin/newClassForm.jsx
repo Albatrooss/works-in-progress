@@ -1,63 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
+import './adminStyles.css'
 
 import amazonService from '../../utils/amazon';
 
-const useStyles = makeStyles(theme => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2)
-  },
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200
-  },
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: '25ch'
-    }
-  }
-}));
-
 export default function NewClassForm() {
-  const classes = useStyles();
   const [formData, setFormData] = useState({
+    type: '',
     className: '',
     description: '',
     instructor: '',
-    dueDate: '',
+    date: '',
+    time: '',
     file: ''
   });
+  const [loading, setLoading] = useState(false);
+  const [newClass, setNewClass] = useState(false);
   const [message, setMessage] = useState('');
-
-  const instructors = [
-    'Caitlin Elmslie',
-    'Tim Robillard',
-    'Michelle D',
-    'Brianna Schneider'
-  ]
+  const [errMessage, setErrMessage] = useState('');
 
   const handleChange = e => {
     if (e.target.name === 'file') {
       setFormData({
         ...formData,
         [e.target.name]: e.target.files[0]
+      })
+    } else if (e.target.name === 'type') {
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.value.toUpperCase()
       })
     } else {
       setFormData({
@@ -70,50 +41,90 @@ export default function NewClassForm() {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
+      setLoading(true);
       let answer = await amazonService.uploadAndCreateDanceClass(formData)
-      setMessage(`New ${answer.danceClass.name} Class Created!`)
+      setLoading(false);
+      setMessage(`${answer.danceClass.name} Created!`)
+      setNewClass(true);
     } catch (err) {
       console.log(err)
-      setMessage(err.message)
+      setErrMessage(`Error! ${err.message}`)
     }
   }
+
+  let myButton = <button type="submit" className="waves-effect btn-large">Create Class</button>;
+
+  if (newClass) {
+    myButton = <p>{message}</p>
+  } else if (loading) {
+    myButton = <div className="preloader-wrapper big active">
+      <div className="spinner-layer spinner-blue-only">
+        <div className="circle-clipper left">
+          <div className="circle"></div>
+        </div><div className="gap-patch">
+          <div className="circle"></div>
+        </div><div className="circle-clipper right">
+          <div className="circle"></div>
+        </div>
+      </div>
+    </div>
+  }
+
+  useEffect(() => {
+    let now = new Date();
+    let date = now.toLocaleDateString();
+    let newDate = date.split('/');
+    let hours = now.getHours();
+    let mins = now.getMinutes().toString().padStart(2, '0');
+    setFormData({
+      ...formData,
+      date: `${newDate[2]}-${newDate[0].toString().padStart(2, '0')}-${newDate[1].toString().padStart(2, '0')}`,
+      time: `${hours}:${mins}`
+    })
+  }, [])
+
   return (
     <>
-      <p className="red-text">{message}</p>
-      <form className={classes.root} noValidate autoComplete="off">
-        <TextField required label="Name" variant="outlined" name="className" onChange={handleChange} />
-        <TextField required label="Description" variant="outlined" name="description" onChange={handleChange} />
-      </form>
-      <form className={classes.container} noValidate onSubmit={handleSubmit}>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="instructor-select">Instructor</InputLabel>
-          <Select
-            labelId="instructor-select"
-            value={formData.instructor}
-            name='instructor'
-            onChange={handleChange}
-            label="Instructor"
-          >
-            <MenuItem value=""><em>None</em></MenuItem>
-            {instructors.map(instructor => <MenuItem value={instructor}>{instructor}</MenuItem>)}
-          </Select>
-        </FormControl>
-        <TextField
-          id="datetime-local"
-          label="Due Date"
-          type="datetime-local"
-          variant="outlined"
-          defaultValue={Date.now()}
-          className={classes.textField}
-          name="dueDate"
-          onChange={handleChange}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-        <input type="file" name="file" onChange={handleChange} />
-        <Button type="submit" >Submit</Button>
-      </form>
+      <div className="row create-class">
+        <div className="col s12 l8 offset-l2">
+          <p className="red-text">{errMessage}</p>
+          <form onSubmit={handleSubmit}>
+            <div className="input-field col s12 my-form-outline">
+              <div className="my-label">Name</div>
+              <input type="text" name="className" required onChange={handleChange} />
+            </div>
+            <div className="input-field col s12 l6 my-form-outline">
+              <div className="my-label">Instructor</div>
+              <input type="text" name="instructor" required onChange={handleChange} />
+            </div>
+            <div className="input-field col s12 l6 my-form-outline">
+              <div className="my-label">Type (C or D)</div>
+              <input type="text" name="type" required pattern="^(c|d|C|D)$" onChange={handleChange} />
+            </div>
+            <div className="input-field col s12 my-form-outline">
+              <div className="my-label">Description</div>
+              <textarea name="description" cols="30" rows="20" required onChange={handleChange} />
+            </div>
+            <div className={`input-field col s12 l6 my-form-outline ${formData.type === 'D' ? 'hidden' : ''}`}>
+              <div className="my-label">Date</div>
+              <input type="date" value={formData.date} name="date" required onChange={handleChange} />
+            </div>
+            <div className={`input-field col s12 l6 my-form-outline ${formData.type === 'D' ? 'hidden' : ''}`}>
+              <div className="my-label">Time</div>
+              <input type="time" value={formData.time} name="time" required onChange={handleChange} />
+            </div>
+            <div className="input-field col s12 l8 my-form-outline">
+              <div className="my-label">Video</div>
+              <input type="file" name="file" required onChange={handleChange} />
+            </div>
+            <div className="input-field col s12 l4 my-create-class-btn">
+              {myButton}
+            </div>
+          </form>
+        </div>
+      </div>
+
+
     </>
   )
 }

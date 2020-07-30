@@ -1,7 +1,7 @@
 .btn:hover {
     background-color: var(--tan);
 }
-
+/* 
 .btn {
     margin: 30px 0 40px 0;
     background-color: var(--peach);
@@ -10,7 +10,7 @@
     height: 75px;
     font-size: 3em;
     font-weight: bold;
-}
+} */
 
 .signup-page form.col.l8 {
     display: block;

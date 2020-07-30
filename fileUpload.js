@@ -23,7 +23,8 @@ const upload = multer({
       cb(null, { fieldName: file.fieldname });
     },
     key: function (req, file, cb) {
-      cb(null, file.originalname)
+      let newKey = file.originalname.replace(' ', '');
+      cb(null, newKey)
     }
   })
 })

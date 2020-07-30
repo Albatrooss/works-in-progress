@@ -23,7 +23,8 @@ class Signup extends Component {
       this.props.handleSignUp();
       this.props.history.push('/');
     } catch (err) {
-      this.setState({ errMsg: err.err.message })
+      console.log(err)
+      this.setState({ errMsg: err.message })
     }
   }
 
@@ -35,7 +36,7 @@ class Signup extends Component {
           <form className="col s12 l8 z-depth-3" onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="input-field col s12">
-                <p>{this.state.errMsg}</p>
+                <p className="red-text">{this.state.errMsg}</p>
                 <input onChange={this.handleChange} name="username" type="text" placeholder="username" className="validate" required />
                 <input onChange={this.handleChange} name="email" type="email" placeholder="example@email.com" className="validate" required />
                 <input onChange={this.handleChange} name="pw" type="password" placeholder="password" className="validate" required />
