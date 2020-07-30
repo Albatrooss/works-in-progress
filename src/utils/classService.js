@@ -1,8 +1,50 @@
+import tokenService from './tokenService';
+
 const BASE_URL = '/api/classes/';
 
 const getAll = async () => {
   try {
     let response = await fetch(BASE_URL, {
+      method: 'POST',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+    })
+    return await response.json();
+  } catch (err) {
+    return err
+  }
+}
+const getAllAdmin = async () => {
+  try {
+    let response = await fetch(BASE_URL + 'admin', {
+      method: 'POST',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      'Authorization': 'Bearer ' + tokenService.getToken(),
+    })
+    if (response.ok) {
+      return await response.json();
+    } else {
+      throw new Error(response.err)
+    }
+  } catch (err) {
+    return err
+  }
+}
+
+const getClasses = async () => {
+  try {
+    let response = await fetch(BASE_URL + 'classes', {
+      method: 'POST',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+    })
+    return await response.json();
+  } catch (err) {
+    return err
+  }
+}
+
+const getCollabs = async () => {
+  try {
+    let response = await fetch(BASE_URL + 'collabs', {
       method: 'POST',
       headers: new Headers({ 'Content-Type': 'application/json' }),
     })
@@ -38,8 +80,30 @@ const enroll = async (clssId, userId) => {
   }
 }
 
+const getMine = async () => {
+  let user = tokenService.getUserFromToken();
+  if (!user) throw new Error('How did you get here? You\'re not logged in!')
+  try {
+    let response = await fetch(BASE_URL + 'my-classes', {
+      method: 'POST',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify({ id: user._id })
+    })
+    if (response.ok) return await response.json();
+    let message = await response.json();
+    console.log(message)
+    throw new Error(message.message);
+  } catch (err) {
+    throw new Error(err.message)
+  }
+}
+
 export default {
   getAll,
+  getAllAdmin,
+  getClasses,
+  getCollabs,
   getOne,
-  enroll
+  enroll,
+  getMine
 }

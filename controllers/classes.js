@@ -21,7 +21,6 @@ const getLegacy = async (req, res) => {
 const getAll = async (req, res) => {
   try {
     let collabs = await DanceClass.find({ dueDate: { $gt: Date.now() }, type: 'C' });
-    console.log('ocllabs: ', collabs)
     let danceClasses = await DanceClass.find({ type: 'D' });
     let classes = [...collabs, ...danceClasses];
     if (classes.length > 0) {
@@ -29,6 +28,32 @@ const getAll = async (req, res) => {
       res.json({ classes })
     } else {
       res.status(404).json({ err: 'No classes found' });
+    }
+  } catch (err) {
+    res.status(400).json({ err: 'Something went wrong..' })
+  }
+}
+
+const getClasses = async (req, res) => {
+  try {
+    let classes = await DanceClass.find({ type: 'D' });
+    if (classes.length > 0) {
+      res.json({ classes })
+    } else {
+      res.status(404).json({ err: 'No classes found' });
+    }
+  } catch (err) {
+    res.status(400).json({ err: 'Something went wrong..' })
+  }
+}
+
+const getCollabs = async (req, res) => {
+  try {
+    let collabs = await DanceClass.find({ type: 'C', dueDate: { $gt: Date.now() } });
+    if (collabs.length > 0) {
+      res.json({ classes: collabs })
+    } else {
+      res.status(404).json({ err: 'No collabs found' });
     }
   } catch (err) {
     res.status(400).json({ err: 'Something went wrong..' })
@@ -56,11 +81,11 @@ const getOne = async (req, res) => {
 }
 
 const getMine = async (req, res) => {
-  console.log('hello?')
+  console.log('here', req.body);
   try {
-    let myClasses = await DanceClass.find({ enrolled: { $in: req.user._id } })
-    console.log('hmm')
-    if (myClasses.length > 0) return res.json({ myClasses });
+    let myClasses = await DanceClass.find({ enrolled: { $in: req.body.id }, type: 'D' })
+    let myCollabs = await DanceClass.find({ enrolled: { $in: req.body.id }, type: 'C' })
+    if (myClasses.length > 0 && myCollabs.length > 0) return res.json({ myClasses, myCollabs });
     res.status(404).json({ message: 'You have no classes to show..' })
   } catch (err) {
     res.status(500).json({ err })
@@ -130,12 +155,18 @@ const getOnePopulated = async (req, res) => {
 
 const getAllPopulated = async (req, res) => {
   try {
-    let classes = await DanceClass.find({ dueDate: { $gt: Date.now() } }).populate('enrolled')
-    if (classes.length > 0) {
-      res.json({ classes })
-    } else {
+    // if (req.user && process.env.REACT_APP_ADMINS.includes(req.user._id)) {
+
+    let classes = await DanceClass.find({ dueDate: { $gt: Date.now() }, type: 'C' }).populate('enrolled')
+    let collabs = await DanceClass.find({ type: 'D' }).populate('enrolled')
+    if (classes.length < 0 && classes.length < 0) {
       res.status(404).json({ err: 'No classes found' });
+    } else {
+      res.json({ classes, collabs })
     }
+    // // } else {
+    //   res.status(403).json({ err: "Access Denied" })
+    // }
   } catch (err) {
     res.status(400).json({ err: 'Something went wrong..' })
   }
@@ -144,6 +175,8 @@ const getAllPopulated = async (req, res) => {
 
 module.exports = {
   getAll,
+  getClasses,
+  getCollabs,
   getLegacy,
   add,
   getOne,

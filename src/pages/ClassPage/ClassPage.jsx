@@ -1,14 +1,12 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import './ClassPage.css';
 
 import ReactPlayer from 'react-player';
 
-import userService from '../../utils/userService';
 import classService from '../../utils/classService';
 
 export default function ClassPage({ user }) {
-  const [, updateState] = useState();
-  const forceUpdate = useCallback(() => updateState({}), [])
   const { id } = useParams()
   const [clss, setClss] = useState({ enrolled: [] });
   const [loading, setLoading] = useState(false);
@@ -66,7 +64,11 @@ export default function ClassPage({ user }) {
         <p className="red-text">{errMessage}</p>
         <h1>{clss.name}</h1>
         <p>{clss.description}</p>
-        <ReactPlayer url={clss.video} controls={true} />
+        <div className='player-container'>
+          <div className="inside-player">
+            <ReactPlayer url={clss.video} controls={true} width="100%" />
+          </div>
+        </div>
       </div>
     )
   } else {

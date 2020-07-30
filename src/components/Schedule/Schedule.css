@@ -2,9 +2,16 @@
     /* width: 95%; */
     margin: 30px auto;
     border: 1px solid var(--tan);
-    border-radius: 2px;
+    border-radius: 5px;
+    padding: 0;
+}
+.row .schedule.col.l6.push-l3{
+    padding: 0;
 }
 .schedule h5 {
     margin: 0;
-    background-color: var(--peach);
+    background-color: var(--dark);
+    color: var(--white);
+    line-height: 50px;
+    height: 50px;
 }

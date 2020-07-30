@@ -4,6 +4,8 @@ const classCtrl = require('../../controllers/classes');
 
 router.post('/', classCtrl.getAll);
 router.post('/legacy', classCtrl.getLegacy);
+router.post('/classes', classCtrl.getClasses);
+router.post('/collabs', classCtrl.getCollabs);
 router.post('/add', classCtrl.add);
 router.post('/my-classes', classCtrl.getMine)
 router.post('/delete/:id', classCtrl.deleteOne)
@@ -14,6 +16,7 @@ router.post('/unenroll/:id', classCtrl.unenroll)
 
 /*------- ADMIN ---------*/
 
+router.use(require('../../config/auth'))
 router.post('/admin', classCtrl.getAllPopulated)
 router.post('/admin/:id', classCtrl.getOnePopulated)
 

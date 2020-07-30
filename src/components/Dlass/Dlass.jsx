@@ -8,7 +8,7 @@ export default function Dlass({ clss }) {
   if (clss.type === 'C') {
     return (
       <Link to={'/class/' + clss._id} >
-        <div className="dlass-container" >
+        <div className="dlass-container z-depth-2" >
           <div className="left-dlass">COLLAB</div>
           <div className="right-dlass">
             <p>{clss.name}</p>
@@ -20,7 +20,7 @@ export default function Dlass({ clss }) {
   } else {
     return (
       <Link to={'/class/' + clss._id} >
-        <div className="dlass-container" >
+        <div className="dlass-container z-depth-2" >
           <div className="left-dlass">CLASS</div>
           <div className="right-dlass">
             <p>{clss.name}</p>

@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
+
+import { properNoun } from '../../utils/converters';
+import userService from '../../utils/userService';
 
 import '../Navbar/Navbar.css';
 
 export default function Navbar({ handleClick, dropped, user }) {
 
   const [navExpanded, setNavExpanded] = useState(false)
-
+  const [admin, setAdmin] = useState(false);
 
   const expandNav = () => {
     setNavExpanded(!navExpanded)
@@ -18,7 +21,8 @@ export default function Navbar({ handleClick, dropped, user }) {
 
   let dropdown = user ?
     <>
-      <li><Link to="/my-classes"><span onClick={handleLink}>My Classes</span></Link></li>
+      <li><Link to="/my-classes"><span onClick={handleLink}>{properNoun(user.username)}</span></Link></li>
+      {admin && <li><a href="/admin">Admin</a></li>}
       <li><a href="/logout">Logout</a></li>
     </> :
     <>
@@ -26,14 +30,22 @@ export default function Navbar({ handleClick, dropped, user }) {
       <li><a href="/signup">Signup</a></li>
     </>;
 
+  useEffect(() => {
+    let user = userService.getUser();
+    if (user) {
+      setAdmin(process.env.REACT_APP_ADMINS.split(' ').includes(user._id))
+    }
+  }, [])
+
   return (
     <nav>
       <div className="nav-wrapper">
-        <img src="Logo-01.png" alt="logo" className="nav-logo" />
+        <img src="images/Logo-01.png" alt="logo" className="nav-logo" />
         <a href="/" className="brand-logo">WORKS IN PROGRESS</a>
         <ul className="right nav-items">
           <li><Link to="/about">About</Link></li>
           <li><Link to="/classes">Classes</Link></li>
+          <li><Link to="/collabs">Collabs</Link></li>
           {dropdown}
         </ul>
       </div>
@@ -41,6 +53,7 @@ export default function Navbar({ handleClick, dropped, user }) {
         <ul className="hidden-ul">
           <li><Link to="/about"><span onClick={handleLink}>About</span></Link></li>
           <li><Link to="/classes"><span onClick={handleLink}>Classes</span></Link></li>
+          <li><Link to="/collabs"><span onClick={handleLink}>Collabs</span></Link></li>
           {dropdown}
         </ul>
       </div>

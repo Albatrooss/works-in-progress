@@ -66,3 +66,7 @@ div.MuiInputBase-root input.MuiOutlinedInput-input {
     max-height: 0;
     transition: max-height .5s ease-in-out;
 }
+
+.my-outline {
+    border: 2px solid red;
+}

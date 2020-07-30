@@ -29,10 +29,10 @@ export default function Schedule() {
 
   return (
     <div className="row">
-      <div className='schedule z-depth-2 col s12 l6 push-l3' style={{ padding: 0 }}>
+      <div className='schedule z-depth-2 col s12 l6 push-l3'>
         <h5>AVAILABLE NOW</h5>
         <p>{message}</p>
-        {classes.map(clss => <Dlass clss={clss} />)}
+        {classes.map(clss => <Dlass key={clss._id} clss={clss} />)}
       </div>
     </div>
   )

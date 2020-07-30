@@ -12,7 +12,7 @@ export default function Classes({ user, history }) {
   useEffect(() => {
     async function oneTime() {
       try {
-        let temp = await classService.getClasses();
+        let temp = await classService.getCollabs();
         setClasses(temp.classes);
       } catch (err) {
         setErrMessage(err.message)
@@ -23,7 +23,7 @@ export default function Classes({ user, history }) {
 
   return (
     <div className="classes-container">
-      <h1>Classes</h1>
+      <h1>Collabs</h1>
       <p className="red-text">{errMessage}</p>
       <ul>
         {classes.map((clss, i) => <li key={`class-${i}`}><ClassCard history={history} clss={clss} /></li>)}

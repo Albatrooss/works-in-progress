@@ -22,9 +22,7 @@ code {
 }
 
 .nav-wrapper {
-  background-color: var(--main-color);
-  position: relative;
-  z-index: 2;
+  background-color: var(--dark);
 }
 nav li a {
   color: var(--grey)
@@ -36,4 +34,9 @@ nav li a {
 
 .my-text-dark {
   color: var(--dark)
+}
+
+.denied {
+  text-align: center;
+  font-size: 7em;
 }

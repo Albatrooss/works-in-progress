@@ -1,5 +1,6 @@
-const BASE_URL = '/api/upload/';
+import tokenServices from './tokenService';
 
+const BASE_URL = '/api/upload/';
 
 const uploadAndCreateDanceClass = async (data) => {
   console.log(data)
@@ -15,6 +16,7 @@ const uploadAndCreateDanceClass = async (data) => {
     let classResponse = await fetch('/api/classes/add', {
       method: 'POST',
       headers: new Headers({ 'Content-Type': 'application/json' }),
+      'Authorization': 'Bearer ' + tokenServices.getToken(),
       body: JSON.stringify({
         name: data.className,
         type: data.type,
