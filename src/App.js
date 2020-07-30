@@ -4,7 +4,6 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 
 import dotenv from 'dotenv';
-dotenv.config();
 
 import NavBar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer.jsx'
@@ -22,8 +21,11 @@ import ClassPage from './pages/ClassPage/ClassPage';
 
 import userService from './utils/userService';
 
+dotenv.config();
+
 function App() {
   let [user, setUser] = useState(null);
+  console.log('admins', process.env.REACT_APP_ADMINS)
 
   // let [test, setTest] = useState({ name: 'test' })
 
