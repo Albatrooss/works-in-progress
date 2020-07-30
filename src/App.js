@@ -3,6 +3,9 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import './App.css';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 import NavBar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer.jsx'
 
