@@ -3,13 +3,16 @@ import React from 'react';
 import { convertDate } from '../../utils/converters'
 
 
-export default function ClassCard({ clss, history }) {
+export default function ClassCard({ clss, history, user }) {
 
   const handleEnroll = () => {
     console.log('here');
     history.push('/class/' + clss._id)
   }
 
+  let btn = clss.enrolled.includes(user._id) ?
+    <button onClick={handleEnroll} className="btn classes-btn">Enroll in this class!</button> :
+    <button onClick={handleEnroll} className="btn classes-btn">Go to your Class</button>
   return (
     <div className="my-class-card">
       <div className="inner-class-card z-depth-2">
@@ -24,7 +27,7 @@ export default function ClassCard({ clss, history }) {
           <div className="right-class">
             <h6><strong>{clss.description}</strong></h6>
             <div style={{ borderBottom: '1px solid var(--dark)' }} />
-            <button onClick={handleEnroll} className="btn classes-btn">Enroll in this class!</button>
+            {btn}
           </div>
         </div>
       </div>

@@ -30,11 +30,11 @@ export default function Classes({ user, history }) {
           <p className="label-class">Works in Progress Collabs</p>
           <h6>Learn a piece of choreography before the deadline then film yourself performing it to be <span>featured in a video</span> that you can share online! A new piece will be posted on the first Friday of each month!</h6>
         </div>
+        <p className="red-text">{errMessage}</p>
+        <ul className="col s12 l6 offset-l3">
+          {classes.map(clss => <li key={clss._id}><ClassCard history={history} clss={clss} user={user} /></li>)}
+        </ul>
       </div>
-      <p className="red-text">{errMessage}</p>
-      <ul>
-        {classes.map(clss => <li key={clss._id}><ClassCard history={history} clss={clss} /></li>)}
-      </ul>
     </div>
   )
 }
