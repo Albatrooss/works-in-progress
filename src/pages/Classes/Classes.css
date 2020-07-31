@@ -27,6 +27,7 @@
     margin: 10px;
 }
 .my-class-card {
+    position: relative;
     display: flex;
     justify-content: center;
     margin-bottom: 25px;
@@ -100,15 +101,53 @@
     background-color: var(--dark);
     color: var(--white);
     border: 1px solid var(--dark);
+    display: flex;
+    align-items: center;
 }
 .my-class-card-left h5 {
     text-align: center;
 }
 .my-class-card-right {
-    display: none;
+    /* display: none; */
 }
-.my-class-car {
+/* .my-class-card {
     margin: 0;
+} */
+.submit-form {
+    margin: 20px;
+    width: 100%;
+    display: flex;
+    align-items: space-between;
+}
+.submit-form input {
+    width: 66%;
+    /* margin: 10px; */
+}
+.my-class-delete:hover {
+    opacity: .76;
+    transition: opacity .5s;
+}
+.my-class-delete {
+    position: absolute;
+    right: 5px;
+    top: 8px;
+    opacity: 1;
+    transition: opacity .5s;
+}
+.go-to-class-link {
+    position: relative;
+    /* top: 50px; */
+}
+.enroll-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 25px 0;
+    height: 50vh
+}
+.enroll-div h5 {
+    text-align: center;
 }
 @media only screen and (min-width: 992px) {
     .inner-class-card {
@@ -136,5 +175,16 @@
     }
     .my-class-card-right h5 {
         text-align: center;
+    }
+    .submit-form { 
+        justify-content: center;
+    }
+    .submit-form input {
+        width: 33%;
+    }
+    .go-to-class-link {
+        position: absolute;
+        top: 8px;
+        right: 55px;
     }
 }

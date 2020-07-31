@@ -25,19 +25,10 @@ dotenv.config();
 
 function App() {
   let [user, setUser] = useState(null);
-  console.log('admins', process.env.REACT_APP_ADMINS)
-  console.log(user)
-
-  // let [test, setTest] = useState({ name: 'test' })
-
 
   const handleSignupLogin = () => {
     setUser(userService.getUser());
   }
-
-  // const testClick = async () => {
-  //   setTest(await userService.test());
-  // }
 
   useEffect(() => {
     setUser(userService.getUser());

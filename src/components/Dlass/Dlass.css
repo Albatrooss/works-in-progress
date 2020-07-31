@@ -1,9 +1,15 @@
+.dlass-container:hover {
+opacity: .8;
+transition: opacity .5s;
+}
 .dlass-container {
     display: flex;
     height: 50px;
     border: 1px solid var(--dark);
     border-radius: 5px;
     margin: 10px;
+    opacity: 1;
+    transition: opacity .5s;
 }
 .left-dlass {
     width: 33.333%;

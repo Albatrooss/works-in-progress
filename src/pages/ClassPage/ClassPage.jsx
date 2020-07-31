@@ -27,7 +27,7 @@ export default function ClassPage({ user }) {
     }
   }
 
-  let enrollBtn = <button className="btn" onClick={handleEnroll}>Enroll in this {clss.type === 'C' ? 'Class' : 'Collab'}!</button>;
+  let enrollBtn = <button className="btn btn-large" onClick={handleEnroll}>Enroll in this {clss.type === 'D' ? 'Class' : 'Collab'}!</button>;
   if (loading) {
     enrollBtn = <div className="preloader-wrapper big active">
       <div className="spinner-layer spinner-blue-only">
@@ -40,6 +40,14 @@ export default function ClassPage({ user }) {
         </div>
       </div>
     </div>
+  }
+
+  const handleChange = () => {
+
+  }
+
+  const handleSubmit = () => {
+    alert('Thanks for submiting your video!')
   }
 
   useEffect(() => {
@@ -71,15 +79,27 @@ export default function ClassPage({ user }) {
             <ReactPlayer url={clss.video} controls={true} width="100%" />
           </div>
         </div>
+        <div className="col s12 l6 offset-l3 my-outline-class">
+          <p className="label-class">Submit you video</p>
+          <form onClick={handleSubmit} className='submit-form'>
+            <input type="file" name='file' onChange={handleChange} />
+            <button type="submit" className="btn">Submit</button>
+          </form>
+        </div>
       </div>
     )
   } else {
     return (
-      <div className="class-page">
+      <div className="class-page row">
         <p className="red-text">{errMessage}</p>
-        <h1>{clss.name}</h1>
-        <p>{clss.description}</p>
-        {enrollBtn}
+        <div className="col s12 l8 offset-l2 my-outline-class">
+          <p className="label-class">{clss.name}</p>
+          <p>{clss.description}</p>
+        </div>
+        <div className="col s12 l6 offset-l3 enroll-div">
+          <h5>Sound like a {clss.type === 'D' ? 'Class' : 'Collab'} for you!?</h5>
+          {enrollBtn}
+        </div>
       </div>
     )
   }

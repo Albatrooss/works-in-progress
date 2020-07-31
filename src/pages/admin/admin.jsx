@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import NewClassForm from './newClassForm';
-import UpdateClassForm from './UpdateClassForm';
+// import UpdateClassForm from './UpdateClassForm';
 
 import './adminStyles.css';
-import classService from '../../utils/classService';
-
+// import classService from '../../utils/classService';
 
 export default function Admin(props) {
 
-  const [classes, setClasses] = useState([])
-  const [collabs, setCollabs] = useState([])
+  // const [classes, setClasses] = useState([])
+  // const [collabs, setCollabs] = useState([])
   const [errMessage, setErrMessage] = useState('')
-  const [selecetedClass, setSelectedClass] = useState({});
+  // const [selecetedClass, setSelectedClass] = useState({});
 
   const [whatsShowing, setWhatsShowing] = useState({
     newClass: false,
@@ -25,30 +24,30 @@ export default function Admin(props) {
     })
   }
 
-  const handleUpdateSelect = (id, type) => {
-    let clss;
-    if (type === 'd') {
-      clss = classes.find(x => x._id === id)
-    } else {
-      clss = collabs.find(x => x._id === id)
-    }
-    console.log(clss)
-    setSelectedClass(clss);
-  }
+  // const handleUpdateSelect = (id, type) => {
+  //   let clss;
+  //   if (type === 'd') {
+  //     clss = classes.find(x => x._id === id)
+  //   } else {
+  //     clss = collabs.find(x => x._id === id)
+  //   }
+  //   console.log(clss)
+  //   setSelectedClass(clss);
+  // }
 
-  useEffect(() => {
-    async function oneTime() {
-      try {
-        let response = await classService.getAllAdmin();
-        console.log(response)
-        setClasses(response.classes);
-        setCollabs(response.collabs);
-      } catch (err) {
-        setErrMessage(err.message)
-      }
-    }
-    oneTime()
-  }, [])
+  // useEffect(() => {
+  //   async function oneTime() {
+  //     try {
+  //       let response = await classService.getAllAdmin();
+  //       console.log(response)
+  //       setClasses(response.classes);
+  //       setCollabs(response.collabs);
+  //     } catch (err) {
+  //       setErrMessage(err.message)
+  //     }
+  //   }
+  //   oneTime()
+  // }, [])
 
   return (
     <div className='admin'>

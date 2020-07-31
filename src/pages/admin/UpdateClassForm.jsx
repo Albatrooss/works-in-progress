@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import './adminStyles.css'
 
-import amazonService from '../../utils/amazon';
 import classService from '../../utils/classService';
 
 export default function NewClassForm({ clss, type, hidden }) {

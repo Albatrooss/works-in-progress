@@ -67,7 +67,6 @@ const getOne = async (id) => {
 }
 
 const enroll = async (clssId, userId) => {
-  console.log(userId, clssId)
   try {
     let response = await fetch(BASE_URL + `enroll/${clssId}`, {
       method: 'POST',
@@ -91,32 +90,48 @@ const getMine = async () => {
     })
     if (response.ok) return await response.json();
     let message = await response.json();
-    console.log(message)
     throw new Error(message.message);
   } catch (err) {
     throw new Error(err.message)
   }
 }
 
-const updateOne = async (formData, clssId) => {
-  let body = {
-    name: formData.className ? formData.className : clssId.name,
-    instructor: formData.instructor ? formData.instructor : clssId.instructor,
-    description: formData.description ? formData.description : clssId.description,
-    type: formData.type ? formData.type : clssId.type,
-    name: formData.className ? formData.className : clssId.name,
-  }
+const unEnroll = async (clss, userId) => {
   try {
-    let response = await fetch(BASE_URL + 'update/' + clssId, {
+    let response = await fetch(BASE_URL + 'unenroll/' + clss._id, {
       method: 'POST',
       headers: new Headers({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify(formData)
+      body: JSON.stringify({ id: userId })
     })
-    return await response.json();
+    if (response.ok) {
+      return await response.json()
+    } else {
+      throw new Error('Something went wrong..')
+    }
   } catch (err) {
-    throw new Error(err.message);
+    return err
   }
 }
+
+// const updateOne = async (formData, clssId) => {
+//   let body = {
+//     name: formData.className ? formData.className : clssId.name,
+//     instructor: formData.instructor ? formData.instructor : clssId.instructor,
+//     description: formData.description ? formData.description : clssId.description,
+//     type: formData.type ? formData.type : clssId.type,
+//     name: formData.className ? formData.className : clssId.name,
+//   }
+//   try {
+//     let response = await fetch(BASE_URL + 'update/' + clssId, {
+//       method: 'POST',
+//       headers: new Headers({ 'Content-Type': 'application/json' }),
+//       body: JSON.stringify(formData)
+//     })
+//     return await response.json();
+//   } catch (err) {
+//     throw new Error(err.message);
+//   }
+// }
 
 export default {
   getAll,
@@ -125,6 +140,7 @@ export default {
   getCollabs,
   getOne,
   enroll,
+  unEnroll,
   getMine,
-  updateOne
+  // updateOne
 }

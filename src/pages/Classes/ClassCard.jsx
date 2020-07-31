@@ -11,8 +11,8 @@ export default function ClassCard({ clss, history, user }) {
   }
 
   let btn = clss.enrolled.includes(user._id) ?
-    <button onClick={handleEnroll} className="btn classes-btn">Enroll in this class!</button> :
-    <button onClick={handleEnroll} className="btn classes-btn">Go to your Class</button>
+    <button onClick={handleEnroll} className="btn classes-btn">Go to your Class</button> :
+    <button onClick={handleEnroll} className="btn classes-btn">Enroll in this class!</button>
   return (
     <div className="my-class-card">
       <div className="inner-class-card z-depth-2">
