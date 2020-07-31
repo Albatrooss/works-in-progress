@@ -28,9 +28,9 @@ export default function Schedule() {
   }, [])
 
   return (
-    <div className="row">
-      <div className='schedule z-depth-2 col s12 l6 push-l3'>
-        <h5>AVAILABLE NOW</h5>
+    <div className="row schedule">
+      <div className='col s12 l8 offset-l2 my-outline-class'>
+        <p className='label-class'>Available Now</p>
         <p>{message}</p>
         {classes.map(clss => <Dlass key={clss._id} clss={clss} />)}
       </div>
