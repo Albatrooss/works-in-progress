@@ -33,7 +33,7 @@ export default function Navbar({ handleClick, dropped, user }) {
   useEffect(() => {
     let user = userService.getUser();
     if (user) {
-      setAdmin(process.env.REACT_APP_ADMINS.split(' ').includes(user._id))
+      setAdmin(process.env.REACT_APP_ADMINS.split(' ').includes(user.username))
     }
   }, [])
 
@@ -43,7 +43,7 @@ export default function Navbar({ handleClick, dropped, user }) {
         <img src="images/Logo-01.png" alt="logo" className="nav-logo" />
         <a href="/" className="brand-logo">WORKS IN PROGRESS</a>
         <ul className="right nav-items">
-          <li><Link to="/about">About</Link></li>
+          {/* <li><Link to="/about">About</Link></li> */}
           <li><Link to="/classes">Classes</Link></li>
           <li><Link to="/collabs">Collabs</Link></li>
           {dropdown}
@@ -51,7 +51,7 @@ export default function Navbar({ handleClick, dropped, user }) {
       </div>
       <div className={`${navExpanded ? 'showing' : ''} hidden-nav-wrapper`}>
         <ul className="hidden-ul">
-          <li><Link to="/about"><span onClick={handleLink}>About</span></Link></li>
+          {/* <li><Link to="/about"><span onClick={handleLink}>About</span></Link></li> */}
           <li><Link to="/classes"><span onClick={handleLink}>Classes</span></Link></li>
           <li><Link to="/collabs"><span onClick={handleLink}>Collabs</span></Link></li>
           {dropdown}

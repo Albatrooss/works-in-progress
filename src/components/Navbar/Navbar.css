@@ -56,6 +56,17 @@ nav .hidden-ul {
     flex-direction: column;
 }
 
+.hidden-ul li a:active {
+    background-color: black;
+}
+
+.hidden-ul li a {
+    font-size: 2em;
+    margin-top: 10px;
+    color: var(--white);
+    border-bottom: 2px solid var(--white);
+}
+
 @media only screen and (min-width: 992px) {
     nav .brand-logo {
         width: auto;

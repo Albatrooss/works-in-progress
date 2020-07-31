@@ -31,7 +31,7 @@ export default function MyClasses({ user }) {
       <div className="row">
         <div className="my-outline-class col s12 l8 offset-l2">
           {user && <p className="label-class">{properNoun(user.username)}</p>}
-          <h6>Welcom to Works in Progress! Below are all the current Classes and Collabs you have enrolled in</h6>
+          <h6>Welcome to Works in Progress! Below are all the current Classes and Collabs you have enrolled in</h6>
         </div>
         {/* <p className="red-text">{errMessage}</p> */}
         <div className="my-outline-class col s12 l10 offset-l1">

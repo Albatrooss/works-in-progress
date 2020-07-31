@@ -2,6 +2,9 @@
 .classes-container h6 {
     font-family: 'Josefin Sans', sans-serif;
 }
+.my-classes-container h6 {
+    text-align: center;
+}
 .classes-container {
     text-align: center;
 }
@@ -62,7 +65,8 @@
 }
 
 .classes-container .label-class,
-.my-classes-container .label-class {
+.my-classes-container .label-class,
+.class-page .label-class {
     position: absolute;
     background-color: var(--white);
     top: -38px;
@@ -73,7 +77,8 @@
     font-family: 'Rubik', sans-serif;
 }
 
-.my-outline-class {
+.my-outline-class,
+.class-page .my-outline-class {
     position: relative;
     border-top: 2px solid var(--dark);
     border-bottom: 2px solid var(--dark);
@@ -114,7 +119,8 @@
         border: 2px solid var(--dark)
     }
     .classes-container .label-class,
-    .my-classes-container .label-class {
+    .my-classes-container .label-class,
+    .class-page .label-class {
         font-size: 2em;
         left: 20px;
         top: -58px;

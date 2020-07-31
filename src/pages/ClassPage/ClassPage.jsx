@@ -60,11 +60,13 @@ export default function ClassPage({ user }) {
 
   if (enrolled) {
     return (
-      <div className="class-page">
+      <div className="class-page row">
         <p className="red-text">{errMessage}</p>
-        <h1>{clss.name}</h1>
-        <p>{clss.description}</p>
-        <div className='player-container'>
+        <div className="col s12 l8 offset-l2 my-outline-class">
+          <p className="label-class">{clss.name}</p>
+          <p>{clss.description}</p>
+        </div>
+        <div className='player-container col s12'>
           <div className="inside-player">
             <ReactPlayer url={clss.video} controls={true} width="100%" />
           </div>

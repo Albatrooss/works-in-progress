@@ -52,7 +52,7 @@ export default function Admin(props) {
 
   return (
     <div className='admin'>
-      <h1>ADMIN PAGE</h1>
+      <h3>ADMIN PAGE</h3>
       <p className="red-text">{errMessage}</p>
       <h5 onClick={() => handleShowing('newClass')}>Create a Class/Collab <i className="material-icons">arrow_drop_{whatsShowing.newClass ? 'up' : 'down'}</i></h5>
       <div className="row">
