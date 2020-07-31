@@ -38,10 +38,35 @@
   display: flex;
 }
 
-.director-msg img {
-  width: 150px;
+.director-msg .dir-first {
+  width: 100%;
 }
 
 .director-msg hr {
   width: 75%;
+}
+.home img {
+  border-radius: 5px;
+}
+
+.cait-main-img img {
+  max-width: 200px;
+}
+
+.cait-main-img {
+  display: none;
+}
+.mobile-main-img {
+  display: block;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 992px) {
+  .cait-main-img {
+    display: block;
+  }
+  .mobile-main-img {
+    display: none;
+  }
 }

@@ -1,3 +1,7 @@
+.classes-container p, 
+.classes-container h6 {
+    font-family: 'Josefin Sans', sans-serif;
+}
 .classes-container {
     text-align: center;
 }
@@ -12,4 +16,119 @@
 .btn.classes-btn {
     font-size: 1em;
     margin: 0
+}
+
+.class-sider {
+    max-width: 100px;
+    max-height: 150px;
+    margin: 10px;
+}
+.my-class-card {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+.inner-class-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.inner-container-class {
+    display: flex;
+    width: 100%
+}
+.and-background {
+    font-size: 2em;
+    background-color: var(--dark);
+    color: var(--white);
+    width: 100%;
+}
+.left-class {
+    width: 40%;
+    padding-right: 20px;
+}
+.right-class,
+.left-class {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.left-class {
+    width: 40%;
+    padding-right: 20px;
+}
+
+.classes-container .label-class,
+.my-classes-container .label-class {
+    position: absolute;
+    background-color: var(--white);
+    top: -38px;
+    left: 10px;
+    padding: 0 8px;
+    font-weight: bolder;
+    font-size: 1.5em;
+    font-family: 'Rubik', sans-serif;
+}
+
+.my-outline-class {
+    position: relative;
+    border-top: 2px solid var(--dark);
+    border-bottom: 2px solid var(--dark);
+    margin-top: 25px; 
+}
+.classes-container .my-outline-class h6,
+.my-classes-container .my-outline-class h6 {
+    margin: 20px;
+}
+.classes-container .my-outline-class h6 span {
+    font-weight: bolder;
+    background-color: rgba(0,0,0,0.15);
+}
+.my-classes-container .my-outline-class {
+    margin-bottom: 20px;
+}
+
+.my-class-card-left {
+    background-color: var(--dark);
+    color: var(--white);
+    border: 1px solid var(--dark);
+}
+.my-class-card-left h5 {
+    text-align: center;
+}
+.my-class-card-right {
+    display: none;
+}
+.my-class-car {
+    margin: 0;
+}
+@media only screen and (min-width: 992px) {
+    .inner-class-card {
+        width: 100%;
+    }
+    .my-outline-class {
+        border-radius: 5px;
+        border: 2px solid var(--dark)
+    }
+    .classes-container .label-class,
+    .my-classes-container .label-class {
+        font-size: 2em;
+        left: 20px;
+        top: -58px;
+    }
+    .my-classes-container .label-class.non-title {
+        font-size: 1.5em;
+        left: 10px;
+        top: -45px;
+    }
+    .my-class-card-right {
+        display: block;
+        border: 1px solid var(--dark);
+    }
+    .my-class-card-right h5 {
+        text-align: center;
+    }
 }

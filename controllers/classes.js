@@ -85,8 +85,11 @@ const getMine = async (req, res) => {
   try {
     let myClasses = await DanceClass.find({ enrolled: { $in: req.body.id }, type: 'D' })
     let myCollabs = await DanceClass.find({ enrolled: { $in: req.body.id }, type: 'C' })
-    if (myClasses.length > 0 && myCollabs.length > 0) return res.json({ myClasses, myCollabs });
-    res.status(404).json({ message: 'You have no classes to show..' })
+    if (myClasses.length < 0 && myCollabs.length < 0) {
+      res.status(404).json({ message: 'You have no classes to show..' })
+    } else {
+      res.json({ myClasses, myCollabs });
+    }
   } catch (err) {
     res.status(500).json({ err })
   }

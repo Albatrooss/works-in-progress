@@ -3,13 +3,9 @@ const months = [null, 'January', 'February', 'March', 'April', 'May', 'June', 'J
 export function convertDate(date) {
   let dateStr = new Date(date).toLocaleString();
   // return dateStr
-  let nice = {
-    month: months[dateStr[0]],
-    day: dateStr[2] + dateStr[3],
-    year: dateStr[5] + dateStr[6] + dateStr[7] + dateStr[8],
-    rest: dateStr.slice(11)
-  }
-  return `${nice.month} ${nice.day}, ${nice.year}: ${nice.rest}`
+  let half = dateStr.split(', ');
+  let split = half[0].split('/')
+  return `${months[split[0]]} ${split[1]}, ${split[2]}: ${half[1]}`
 }
 
 export function properNoun(name) {

@@ -11,9 +11,24 @@ export default function Home() {
         <hr className="col s12 l6 offset-l3" />
         <h4 className="col s12">Words from the Director</h4>
         <div className="director-msg col s12 l6 offset-l3">
-          <img src="images/Cait-01.jpg" alt="" className='z-depth-1' />
-          <div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut dolores obcaecati quia ipsa quasi eveniet, commodi accusantium? Distinctio nemo nisi adipisci enim explicabo nobis, nulla exercitationem dicta aliquid illum eveniet?</p> <hr /><p><strong>Caitlin Elmslie - Director</strong></p>
+          <div className="col s4 cait-main-img">
+            <img src="images/caitlin_elmslie_headshot.jpg" alt="" className='z-depth-1' />
+          </div>
+          <div className="col s12 l8">
+            <img src="images/caitlin_elmslie_headshot.jpg" alt="" className='z-depth-1 mobile-main-img' />
+            <p>Caitlin is an aspiring clinician scientist with a graduate degree in dance and undergraduate degrees in kinesiology and psychology. She is currently in her final year of study in Occupational Therapy at the University of Toronto.</p>
+            <p>Caitlin is currently completing her certification as a Pilates Instructor through Body Harmonics. She has taught dance for 15 years for students of all ages from young children to adults in studios and for programs across Ontario. A highlight of her training was the 3 months Caitlin spent in New York City studying at Broadway Dance Center as part of their International Student Visa Program. </p>
+          </div>
+        </div>
+        <div>
+          <div className="col s12 l6 offset-l3">
+            <p>The goal of Works in Progress Movement Studio is to combine dance, pilates, and occupational therapy in order to promote the benefits of movement in an accessible way. </p>
+            <hr />
+            <p><strong>Caitlin Elmslie, MA BSc BA <br />
+            Movement Educator <br />
+            Certified Personal Trainer (Canadian Fitness Professionals)
+            </strong></p>
+
           </div>
         </div>
       </div>

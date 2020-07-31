@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
+
+import MyClassCard from './MyClassCard';
 import classService from '../../utils/classService';
+import { properNoun } from '../../utils/converters';
+import './Classes.css';
 
 export default function MyClasses({ user }) {
 
@@ -23,18 +27,30 @@ export default function MyClasses({ user }) {
   }, [])
 
   return (
-    <div>
-      <h1>MY CLASSES</h1>
-      <p className="red-text">{errMessage}</p>
-      <h4>My Classes</h4>
-      <ul>
-        {classList.map(clss => <li>{clss.name}</li>)}
-        <li>Looking for more Classes? <Link to='/classes'>Click Here!</Link></li>
-      </ul>
-      <h4>My Collabs</h4>
-      <ul>
-        {collabList.map(clss => <li>{clss.name}</li>)}
-      </ul>
+    <div className="my-classes-container">
+      <div className="row">
+        <div className="my-outline-class col s12 l8 offset-l2">
+          {user && <p className="label-class">{properNoun(user.username)}</p>}
+          <h6>Welcom to Works in Progress! Below are all the current Classes and Collabs you have enrolled in</h6>
+        </div>
+        {/* <p className="red-text">{errMessage}</p> */}
+        <div className="my-outline-class col s12 l10 offset-l1">
+          <p className="label-class non-title">My Classes</p>
+          <ul>
+            {classList.length === 0 ? <p><strong>No Classes to show</strong></p> : ''}
+            {classList.map(clss => <li><Link to={`/class/${clss._id}`} ><MyClassCard clss={clss} /></Link></li>)}
+            <li>Looking for more Classes? <Link to='/classes'>Click Here!</Link></li>
+          </ul>
+        </div>
+        <div className="my-outline-class col s12 l10 offset-l1">
+          <p className="label-class non-title">My Collabs</p>
+          <ul>
+            {collabList.map(clss => <li><Link to={`/class/${clss._id}`} ><MyClassCard clss={clss} /></Link></li>)}
+            {collabList.length === 0 ? <p><strong>No Collabs to show</strong></p> : ''}
+            <li>Looking for more Collabs? <Link to='/collabs'>Click Here!</Link></li>
+          </ul>
+        </div>
+      </div>
     </div>
   )
 }

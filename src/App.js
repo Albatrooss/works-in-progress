@@ -26,6 +26,7 @@ dotenv.config();
 function App() {
   let [user, setUser] = useState(null);
   console.log('admins', process.env.REACT_APP_ADMINS)
+  console.log(user)
 
   // let [test, setTest] = useState({ name: 'test' })
 

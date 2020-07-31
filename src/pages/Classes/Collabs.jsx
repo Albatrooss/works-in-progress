@@ -13,8 +13,10 @@ export default function Classes({ user, history }) {
     async function oneTime() {
       try {
         let temp = await classService.getCollabs();
+        if (temp.err) throw new Error(temp.err)
         setClasses(temp.classes);
       } catch (err) {
+        console.log('jere')
         setErrMessage(err.message)
       }
     }
@@ -23,10 +25,15 @@ export default function Classes({ user, history }) {
 
   return (
     <div className="classes-container">
-      <h1>Collabs</h1>
+      <div className="row">
+        <div className="my-outline-class col s12 l8 offset-l2">
+          <p className="label-class">Works in Progress Collabs</p>
+          <h6>Learn a piece of choreography before the deadline then film yourself performing it to be <span>featured in a video</span> that you can share online! A new piece will be posted on the first Friday of each month!</h6>
+        </div>
+      </div>
       <p className="red-text">{errMessage}</p>
       <ul>
-        {classes.map((clss, i) => <li key={`class-${i}`}><ClassCard history={history} clss={clss} /></li>)}
+        {classes.map(clss => <li key={clss._id}><ClassCard history={history} clss={clss} /></li>)}
       </ul>
     </div>
   )
