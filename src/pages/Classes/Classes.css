@@ -86,8 +86,13 @@
     margin-top: 25px; 
 }
 .classes-container .my-outline-class h6,
-.my-classes-container .my-outline-class h6 {
+.my-classes-container .my-outline-class h6,
+.class-page .my-outline-class h6 {
     margin: 20px;
+}
+.class-page .my-outline-class h6 {
+    font-size: 1.3em;
+    text-align: center;
 }
 .classes-container .my-outline-class h6 span {
     font-weight: bolder;

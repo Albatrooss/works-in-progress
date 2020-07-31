@@ -79,13 +79,15 @@ export default function ClassPage({ user }) {
             <ReactPlayer url={clss.video} controls={true} width="100%" />
           </div>
         </div>
-        <div className="col s12 l6 offset-l3 my-outline-class">
-          <p className="label-class">Submit you video</p>
-          <form onClick={handleSubmit} className='submit-form'>
-            <input type="file" name='file' onChange={handleChange} />
-            <button type="submit" className="btn">Submit</button>
-          </form>
-        </div>
+        {clss.type === 'C' &&
+          <div className="col s12 l6 offset-l3 my-outline-class">
+            <p className="label-class">Submit you video</p>
+            <h6>Mastered this dance? Submit your video below to be featured in this months Collab!</h6>
+            <form onClick={handleSubmit} className='submit-form'>
+              <input type="file" name='file' onChange={handleChange} />
+              <button type="submit" className="btn">Submit</button>
+            </form>
+          </div>}
       </div>
     )
   } else {
