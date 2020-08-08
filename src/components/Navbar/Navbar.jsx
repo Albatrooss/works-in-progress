@@ -33,7 +33,7 @@ export default function Navbar({ handleClick, dropped, user }) {
   useEffect(() => {
     let user = userService.getUser();
     if (user) {
-      setAdmin(process.env.REACT_APP_ADMINS.split(' ').includes(user.username))
+      setAdmin(process.env.REACT_APP_ADMINS.split(' ').includes(user._id))
     }
   }, [])
 
