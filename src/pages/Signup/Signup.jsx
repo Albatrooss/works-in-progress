@@ -9,7 +9,13 @@ class Signup extends Component {
     username: '',
     password: '',
     passwordConf: '',
-    errMsg: ''
+    errMsg: '',
+    pwCShowing: false
+  }
+
+  togglePasswordCreds = e => {
+    e.preventDefault();
+    this.setState({ pwCShowing: !this.state.pwCShowing })
   }
 
   handleChange = e => {
@@ -19,11 +25,8 @@ class Signup extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     if (this.state.password !== this.state.passwordConf) {
-      return this.setState(state => {
-        return {
-          ...state,
-          errMsg: 'Passwords don\'t match..'
-        }
+      return this.setState({
+        errMsg: 'Passwords don\'t match..'
       })
     }
     try {
@@ -53,18 +56,24 @@ class Signup extends Component {
             </div>
             <div className="input-field col s12 my-form-outline">
               <div className="my-label">Password</div>
-              <input onChange={this.handleChange} name="password" type="password" required />
+              <input onChange={this.handleChange} name="password" type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
             </div>
             <div className="input-field col s12 my-form-outline">
               <div className="my-label">ConfrimPassword</div>
               <input onChange={this.handleChange} name="passwordConf" type="password" required />
+            </div>
+            <div className="row">
+              <div className='show-pw-reqs' onClick={this.togglePasswordCreds}>{this.state.pwCShowing ? 'Hide' : 'Show'} Password requirements</div>
+              {this.state.pwCShowing && <>
+                <p>A <b>lowercase</b> letter, A <b>capital (uppercase)</b> letter, A <b>number</b>, A Minimum of <b>8 characters</b></p>
+              </>}
             </div>
             <p>Allready a member? <a href="/login">Login</a></p>
             <button className="btn " type="submit">SIGN UP</button>
           </form>
 
         </div>
-      </div>
+      </div >
     )
   }
 }

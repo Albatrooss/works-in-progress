@@ -160,6 +160,23 @@
 .enroll-div h5 {
     text-align: center;
 }
+
+.show-pw-reqs:hover {
+    cursor: pointer;
+}
+
+.show-pw-reqs {
+    border: solid 1px var(--dark);
+    color: var(--dark);
+    border-radius: 3px;
+    position: absolute;
+    width: 250px;
+    bottom: 100px;
+    left: 50%;
+    margin-left: -125px;
+    padding: 5px;
+}
+
 @media only screen and (min-width: 992px) {
     .inner-class-card {
         width: 100%;
