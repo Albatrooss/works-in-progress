@@ -2,6 +2,7 @@
 opacity: .8;
 transition: opacity .5s;
 }
+
 .dlass-container {
     display: flex;
     height: 50px;
@@ -35,4 +36,14 @@ transition: opacity .5s;
     /* border-bottom: 1px solid var(--dark); */
     background-color: var(--main-color);
     color: var(--white)
+}
+
+/* Updated */
+
+.dlass {
+    position: relative;
+}
+
+.dlass-new-container a {
+    color: var(--dark)
 }

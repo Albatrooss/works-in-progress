@@ -68,7 +68,9 @@
 .classes-container .label-class,
 .my-classes-container .label-class,
 .class-page .label-class,
-.schedule .label-class {
+.schedule .label-class,
+.signup-page .label-class,
+.dlass .label-class {
     position: absolute;
     background-color: var(--white);
     top: -38px;
@@ -81,7 +83,9 @@
 
 .my-outline-class,
 .class-page .my-outline-class,
-.schedule .my-outline-class {
+.schedule .my-outline-class,
+.signup-page .my-outline-class,
+.dlass .my-outline-class {
     position: relative;
     border-top: 2px solid var(--dark);
     border-bottom: 2px solid var(--dark);
@@ -166,7 +170,8 @@
     }
     .classes-container .label-class,
     .my-classes-container .label-class,
-    .class-page .label-class {
+    .class-page .label-class,
+    .signup-page .label-class {
         font-size: 2em;
         left: 20px;
         top: -58px;

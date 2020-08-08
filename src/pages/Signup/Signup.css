@@ -12,9 +12,17 @@
     font-weight: bold;
 } */
 
+.signup-page {
+    margin: 50px 0;
+}
+
+.signup-page form {
+    position: relative;
+}
+
 .signup-page form.col.l8 {
     display: block;
-    background-color: var(--dark);
+    /* background-color: var(--dark); */
 }
 
 .signup-page input.validate::placeholder {
@@ -29,8 +37,17 @@
     text-align: center;
     background-color: #ffffff;
 }
+
+.signup-page form .input-field {
+    position: relative;
+}
+
 .input-field p {
     color: var(--white)
+}
+
+.signup-form {
+    padding: 25px 0;
 }
 
 @media only screen and (min-width: 992px) {

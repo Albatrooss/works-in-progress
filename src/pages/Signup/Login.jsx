@@ -30,19 +30,21 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="signup-page center-align">
-        <h1>LOG IN</h1>
-        <div className="row">
-          <form className="col s12 l8 z-depth-3" onSubmit={this.handleSubmit}>
-            <div className="row">
-              <div className="input-field col s12">
-                <input onChange={this.handleChange} name="email" type="email" placeholder="example@email.com" className="validate" />
-                <input onChange={this.handleChange} name="pw" type="password" placeholder="password" className="validate" />
-              </div>
-              <p className="red-text text-lighten-1">{this.state.errMsg}</p>
-              <p>Not a member? <a href="/signup">Signup</a></p>
-              <button className="btn" type="submit">SUBMIT</button>
+      <div className="signup-page center-align row">
+        <div className="col s12 l8 offset-l2 my-outline-class">
+          <h3 className="label-class">Log In</h3>
+          <form onSubmit={this.handleSubmit} className="signup-form">
+            <p className="red-text">{this.state.errMsg}</p>
+            <div className="input-field col s12 my-form-outline">
+              <div className="my-label">Email</div>
+              <input onChange={this.handleChange} name="email" type="email" />
             </div>
+            <div className="input-field col s12 my-form-outline">
+              <div className="my-label">Password</div>
+              <input onChange={this.handleChange} name="pw" type="password" />
+            </div>
+            <p>Not a member? <a href="/signup">Signup</a></p>
+            <button className="btn" type="submit">SUBMIT</button>
           </form>
         </div>
       </div>
