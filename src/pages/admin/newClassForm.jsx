@@ -6,14 +6,16 @@ import amazonService from '../../utils/amazon';
 
 export default function NewClassForm() {
   const [formData, setFormData] = useState({
-    type: '',
+    type: 'C',
     className: '',
     description: '',
     instructor: '',
     date: '',
     time: '',
-    file: ''
+    file: '',
+    icon: 1
   });
+  const [iconsShowing, setIconsShowing] = useState(false);
   const [loading, setLoading] = useState(false);
   const [newClass, setNewClass] = useState(false);
   const [message, setMessage] = useState('');
@@ -37,6 +39,41 @@ export default function NewClassForm() {
       })
     }
   }
+
+  const handleCollab = e => {
+    e.preventDefault();
+    setFormData({
+      ...formData,
+      type: formData.type === 'C' ? 'D' : 'C'
+    })
+  }
+
+  const showIcons = e => {
+    e.preventDefault();
+    setIconsShowing(true);
+  }
+
+  const hideIcons = e => {
+    e.preventDefault();
+    setIconsShowing(false);
+  }
+
+  const setIcon = num => {
+    setFormData({
+      ...formData,
+      icon: num
+    })
+    setIconsShowing(false);
+  }
+
+  const icons = (x) => {
+    let res = []
+    for (let i = 0; i < x; i++) {
+      res.push(<li onClick={() => setIcon(i + 1)}><img src={`images/b-w_pic0${i + 1}.png`} alt={`icon-${i + 1}`} className="icon-list-img" /></li>)
+    }
+    return res;
+  }
+
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -86,6 +123,12 @@ export default function NewClassForm() {
   return (
     <>
       <div className="row create-class">
+        {iconsShowing && <div className="speech-bubble">
+          <ul>
+            {icons(7)}
+          </ul>
+          <button className='icon-exite' onClick={hideIcons}>X</button>
+        </div>}
         <div className="col s12 l8 offset-l2">
           <p className="red-text">{errMessage}</p>
           <form onSubmit={handleSubmit}>
@@ -97,9 +140,14 @@ export default function NewClassForm() {
               <div className="my-label">Instructor</div>
               <input type="text" name="instructor" required onChange={handleChange} />
             </div>
-            <div className="input-field col s12 l6 my-form-outline">
-              <div className="my-label">Type (C or D)</div>
-              <input type="text" name="type" required pattern="^(c|d|C|D)$" onChange={handleChange} />
+            <div className="input-field col s6 l3 my-form-outline">
+              <button className={`collab-sel my-form-outline ${formData.type === 'C' ? 'is-collab' : 'not-collab'}`} onClick={handleCollab}><p>Collab</p></button>
+              <div className="my-label collab-label">Type</div>
+            </div>
+            <div className="input-field col s6 l3 my-form-outline">
+              <button onClick={showIcons} className={`icons-sel my-form-outline`} ><img src={`images/b-w_pic0${formData.icon}.png`} alt="icon button" /></button>
+              <div className="my-label collab-label">Icon</div>
+
             </div>
             <div className="input-field col s12 my-form-outline">
               <div className="my-label">Description</div>

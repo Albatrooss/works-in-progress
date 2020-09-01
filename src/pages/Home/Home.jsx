@@ -17,7 +17,7 @@ export default function Home() {
           <div className="col s12 l8">
             <img src="images/caitlin_elmslie_headshot.jpg" alt="" className='z-depth-1 mobile-main-img' />
             <p>Caitlin is an aspiring clinician scientist with a graduate degree in dance and undergraduate degrees in kinesiology and psychology. She is currently in her final year of study in Occupational Therapy at the University of Toronto.</p>
-            <p>Caitlin is currently completing her certification as a Pilates Instructor through Body Harmonics. She has taught dance for 15 years for students of all ages from young children to adults in studios and for programs across Ontario. A highlight of her training was the 3 months Caitlin spent in New York City studying at Broadway Dance Center as part of their International Student Visa Program. </p>
+            <p>Caitlin is a Pilates Mat Instructor certified through Body Harmonics. She has taught dance for 15 years for students of all ages from young children to adults in studios and for programs across Ontario. A highlight of her training was the 3 months Caitlin spent in New York City studying at Broadway Dance Center as part of their International Student Visa Program. </p>
           </div>
         </div>
         <div>
@@ -26,7 +26,8 @@ export default function Home() {
             <hr />
             <p><strong>Caitlin Elmslie, MA BSc BA <br />
             Movement Educator <br />
-            Certified Personal Trainer (Canadian Fitness Professionals)
+            Certified Personal Trainer (CanFit Pro) <br />
+            Certified Pilates Mat Instructor (Body Harmonics)
             </strong></p>
 
           </div>

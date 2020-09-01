@@ -3,7 +3,6 @@ import tokenServices from './tokenService';
 const BASE_URL = '/api/upload/';
 
 const uploadAndCreateDanceClass = async (data) => {
-  console.log(data)
   let formData = new FormData();
   formData.append('video', data.file);
   let response = await fetch(BASE_URL + 'class-video', {
@@ -15,7 +14,9 @@ const uploadAndCreateDanceClass = async (data) => {
     let dueDate = data.type === 'C' ? new Date(`${data.date} ${data.time}`) : null;
     let classResponse = await fetch('/api/classes/add', {
       method: 'POST',
-      headers: new Headers({ 'Content-Type': 'application/json' }),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
       'Authorization': 'Bearer ' + tokenServices.getToken(),
       body: JSON.stringify({
         name: data.className,
@@ -23,7 +24,8 @@ const uploadAndCreateDanceClass = async (data) => {
         description: data.description,
         instructor: data.instructor,
         dueDate: dueDate,
-        video: video.videoUrl
+        video: video.videoUrl,
+        icon: data.icon
       })
     })
     if (classResponse.ok) {

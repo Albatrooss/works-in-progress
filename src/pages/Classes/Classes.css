@@ -198,6 +198,12 @@
         left: 10px;
         top: -45px;
     }
+
+    .col .row.my-class-card {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
     .my-class-card-right {
         display: block;
         border: 1px solid var(--dark);

@@ -75,3 +75,134 @@ div.MuiInputBase-root input.MuiOutlinedInput-input {
     overflow: hidden;
     transition: max-height .5s ease-in-out;
 }
+
+.row form .my-form-outline .collab-sel.not-collab p:hover {
+    cursor: pointer;
+    background-color: #cbd4db;
+}
+
+.row form .my-form-outline .collab-sel.is-collab p:hover {
+    cursor: pointer;
+    background-color: #24293b;
+    color: var(--dark);
+}
+
+.row form .my-form-outline .collab-sel,
+.row form .my-form-outline .icons-sel {
+    margin: 0;
+    padding: 0 10px;
+    height: 47px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.row form .my-form-outline .collab-sel p {
+    padding: 2px 5px;
+}
+
+.row form .my-form-outline .collab-sel.not-collab p {
+    color: var(--dark);
+    background-color: var(--white);
+    border: 1px solid #BBB;
+}
+
+.row form .my-form-outline .collab-sel.is-collab p {
+    color: var(--white);
+    background-color: var(--dark);
+    border: none;
+}
+
+.row form .my-form-outline > div.collab-label {
+    padding: 0;
+}
+
+.row form .my-form-outline .icons-sel {
+    display: flex;
+    justify-content: center;
+}
+
+.row form .my-form-outline .icons-sel img {
+    width: 35px;
+    border: none;
+}
+
+/* ------------- TOP LIST ---------------- */
+
+.list-class {
+    display: flex;
+    justify-content: space-between;
+}
+
+.enrolled {
+    flex: 2;
+    text-align: right;
+    margin-right: 20px;
+}
+
+.enrolled-list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.enrolled-list > p {
+    flex: 1;
+}
+
+@media only screen and (min-width: 993px) {
+    .row form .my-form-outline .collab-sel,
+    .row form .my-form-outline .icons-sel {
+        width: 120%;
+    }
+
+    .speech-bubble {
+        position: absolute;
+        left: 948px;
+        background: #26a69a;
+        border-radius: .4em;
+        z-index: 2;
+        padding: 20px;
+    }
+    
+    .speech-bubble:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 23%;
+        width: 0;
+        height: 0;
+        border: 18px solid transparent;
+        border-right-color: #00aabb;
+        border-left: 0;
+        border-bottom: 0;
+        margin-top: -9px;
+        margin-left: -18px;
+    }
+
+    .icon-list-img:hover {
+        cursor: pointer;
+        background-color: #BBB;
+    }
+
+    .icon-list-img {
+        width: 50px;
+    }
+    
+    .icon-exite:hover {
+        background-color: rgb(235, 99, 99);
+        cursor: pointer;
+    }
+
+    .icon-exite {
+        position: absolute;
+        right: -10px;
+        top: -10px;
+        color: var(--white);
+        background-color: lightcoral;
+        border: 2px solid var(--white);
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+    }
+}
