@@ -6,7 +6,9 @@ const getAll = async () => {
   try {
     let response = await fetch(BASE_URL, {
       method: 'POST',
-      headers: new Headers({ 'Content-Type': 'application/json' }),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
     })
     return await response.json();
   } catch (err) {
@@ -17,7 +19,9 @@ const getAllAdmin = async () => {
   try {
     let response = await fetch(BASE_URL + 'admin', {
       method: 'POST',
-      headers: new Headers({ 'Content-Type': 'application/json' }),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
       'Authorization': 'Bearer ' + tokenService.getToken(),
     })
     if (response.ok) {
@@ -34,7 +38,9 @@ const getClasses = async () => {
   try {
     let response = await fetch(BASE_URL + 'classes', {
       method: 'POST',
-      headers: new Headers({ 'Content-Type': 'application/json' }),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
     })
     return await response.json();
   } catch (err) {
@@ -46,7 +52,9 @@ const getCollabs = async () => {
   try {
     let response = await fetch(BASE_URL + 'collabs', {
       method: 'POST',
-      headers: new Headers({ 'Content-Type': 'application/json' }),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
     })
     return await response.json();
   } catch (err) {
@@ -58,7 +66,23 @@ const getOne = async (id) => {
   try {
     let response = await fetch(BASE_URL + id, {
       method: 'POST',
-      headers: new Headers({ 'Content-Type': 'application/json' }),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+    });
+    return await response.json();
+  } catch (err) {
+    return err
+  }
+}
+
+const getOneAdmin = async id => {
+  try {
+    let response = await fetch(BASE_URL + 'admin/' + id, {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
     });
     return await response.json();
   } catch (err) {
@@ -70,8 +94,12 @@ const enroll = async (clssId, userId) => {
   try {
     let response = await fetch(BASE_URL + `enroll/${clssId}`, {
       method: 'POST',
-      headers: new Headers({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify({ id: userId })
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        id: userId
+      })
     });
     return await response.json();
   } catch (err) {
@@ -85,8 +113,12 @@ const getMine = async () => {
   try {
     let response = await fetch(BASE_URL + 'my-classes', {
       method: 'POST',
-      headers: new Headers({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify({ id: user._id })
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        id: user._id
+      })
     })
     if (response.ok) return await response.json();
     let message = await response.json();
@@ -100,8 +132,12 @@ const unEnroll = async (clss, userId) => {
   try {
     let response = await fetch(BASE_URL + 'unenroll/' + clss._id, {
       method: 'POST',
-      headers: new Headers({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify({ id: userId })
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        id: userId
+      })
     })
     if (response.ok) {
       return await response.json()
@@ -139,6 +175,7 @@ export default {
   getClasses,
   getCollabs,
   getOne,
+  getOneAdmin,
   enroll,
   unEnroll,
   getMine,

@@ -262,10 +262,30 @@ const unenroll = async (req, res) => {
 
 const getOnePopulated = async (req, res) => {
   try {
-    console.log(req.params.id)
     let danceClass = await DanceClass.findOne({
       _id: req.params.id
     }).populate('enrolled');
+    danceClass.enrolled.map(async e => {
+      let classes = await DanceClass.find({
+        enrolled: {
+          $in: e._id
+        },
+        type: 'D'
+      }).map(c => c.name ? c.name : null)
+      let collabs = await DanceClass.find({
+        enrolled: {
+          $in: e._id
+        },
+        type: 'C'
+      }).map(c => c.name ? c.name : null);
+      console.log('collabs: ', collabs, 'classes: ', classes);
+      return {
+        ...e,
+        classes: classes,
+        collabs: collabs
+      }
+    })
+    console.log('dC', danceClass)
     res.json(danceClass)
   } catch (err) {
     res.status(404).json({
