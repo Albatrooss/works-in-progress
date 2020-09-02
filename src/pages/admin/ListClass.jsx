@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
+import classService from '../../utils/classService';
+
 export default function ListClass({ clss, handleClick }) {
+
   return (
     <div className="row" >
       <Link to={`/admin/${clss._id}`}>
@@ -11,10 +14,6 @@ export default function ListClass({ clss, handleClick }) {
           </div>
           <div className="enrolled">
             {clss.enrolled.length}
-          </div>
-          <div className="rest">
-            <button>UPDATE</button>
-            <button>DELETE</button>
           </div>
         </div>
       </Link>

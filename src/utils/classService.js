@@ -169,6 +169,24 @@ const unEnroll = async (clss, userId) => {
 //   }
 // }
 
+const deleteOne = async id => {
+  try {
+    let response = fetch(BASE_URL + 'delete/' + id, {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+    if (response.ok) {
+      return response;
+    } else {
+      throw new Error(response.err);
+    }
+  } catch (err) {
+    return err;
+  }
+}
+
 export default {
   getAll,
   getAllAdmin,
@@ -180,4 +198,5 @@ export default {
   unEnroll,
   getMine,
   // updateOne
+  deleteOne
 }

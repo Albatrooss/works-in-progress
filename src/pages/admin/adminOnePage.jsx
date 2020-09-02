@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import classService from '../../utils/classService'
 
-export default function AdminOnePage() {
+export default function AdminOnePage({ history }) {
 
   const { id } = useParams();
 
@@ -19,6 +19,16 @@ export default function AdminOnePage() {
       </div>
     )
     return res;
+  }
+
+  const deleteOne = async () => {
+    try {
+      let response = await classService.deleteOne(clss._id);
+      console.log(response);
+      history.push('/admin')
+    } catch (err) {
+      setErrMessage(err.message);
+    }
   }
 
   useEffect(() => {
@@ -53,6 +63,12 @@ export default function AdminOnePage() {
             {/* <p>{e.classes.length}</p> */}
           </div>
         )}
+        <div className="col s6">
+          <button className="btn">UPDATE</button>
+        </div>
+        <div className="col s6">
+          <button className="btn red" onClick={deleteOne}>DELETE</button>
+        </div>
       </div>
     </div>
   )

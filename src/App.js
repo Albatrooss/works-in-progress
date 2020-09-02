@@ -195,12 +195,11 @@ function App() {
                         <
                           Route path='/admin/:id'
                           render={
-                            () => (
+                            (props) => (
                               process.env.REACT_APP_ADMINS.split(' ').includes(user._id) ?
                                 <
                                   AdminOneClass user={
-                                    user
-                                  }
+                                    user} history={props.history}
                                 /> : <
                       h1 className="red-text denied" > ACCESS DENIED < /h1>
                     )
