@@ -2,5 +2,10 @@ footer {
     text-align: center;
     color: var(--white);
     background-color: var(--dark);
-    height: 4vh;
+    min-height: 4vh;
+    padding: 5px;
+}
+
+footer h6 {
+    margin: 15px;
 }
