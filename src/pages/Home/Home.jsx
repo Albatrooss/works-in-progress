@@ -26,7 +26,7 @@ export default function Home() {
             <hr />
             <p><strong>Caitlin Elmslie, MA BSc BA <br />
             Movement Educator <br />
-            Certified Personal Trainer (CanFit Pro) <br />
+            Certified Personal Trainer (CanFitPro) <br />
             Certified Pilates Mat Instructor (Body Harmonics)
             </strong></p>
 

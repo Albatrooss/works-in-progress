@@ -59,12 +59,12 @@ export default function Admin(props) {
     <div className='admin'>
       <h3>ADMIN PAGE</h3>
       <p className="red-text">{errMessage}</p>
-      <div>
+      <div className='admin-class-list'>
         <ul>
-          <li>Classes</li>
+          <li><h4>Classes</h4></li>
           <li><hr /></li>
           {allClasses(classes)}
-          <li>Collabs</li>
+          <li><h4>Collabs</h4></li>
           <li><hr /></li>
           {allClasses(collabs)}
         </ul>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import MyClassCard from './MyClassCard';
 import classService from '../../utils/classService';
+import requestService from '../../utils/requestService';
 import { properNoun } from '../../utils/converters';
 import './Classes.css';
 
@@ -11,6 +12,11 @@ export default function MyClasses({ user }) {
   const [classList, setClassList] = useState([]);
   const [collabList, setCollabList] = useState([]);
   const [errMessage, setErrMessage] = useState('');
+
+  const [songForm, setSongForm] = useState({
+    song: '',
+    dance: ''
+  })
 
   const handleDelete = async (clss) => {
     try {
@@ -22,6 +28,23 @@ export default function MyClasses({ user }) {
       }
     } catch (err) {
       setErrMessage(err.message)
+    }
+  }
+
+  const handleSongChange = (e) => {
+    setSongForm({
+      ...songForm,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSongSubmit = async e => {
+    e.preventDefault();
+    try {
+      let res = await requestService.createSongRequest(songForm)
+      console.log(res)
+    } catch (err) {
+      console.log('err: ', err)
     }
   }
 
@@ -64,6 +87,20 @@ export default function MyClasses({ user }) {
             {collabList.length === 0 ? <p><strong>No Collabs to show</strong></p> : ''}
             <li>Looking for more Collabs? <Link to='/collabs'>Click Here!</Link></li>
           </ul>
+        </div>
+        <div className="my-outline-class col s12 l10 offset-l1 request-song">
+          <form onSubmit={handleSongSubmit}>
+            <p className="label-class non-title">Request a Song/Dance</p>
+            <div className="input-field col s12 my-form-outline">
+              <div className="my-label">Song</div>
+              <input type="text" name="song" required onChange={handleSongChange} />
+            </div>
+            <div className="input-field col s12 my-form-outline">
+              <div className="my-label">Dance Type</div>
+              <input type="text" name="dance" required onChange={handleSongChange} />
+            </div>
+            <button className='btn' type="submit" >Submit</button>
+          </form>
         </div>
       </div>
     </div>

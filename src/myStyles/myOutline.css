@@ -1,0 +1,31 @@
+.my-form-outline {
+    position: relative;
+}
+.my-form-outline.hidden {
+    display: none;
+}
+
+.row form .my-form-outline > div {
+    position: absolute;
+    left: 20px;
+    top: -10px;
+    background-color: var(--white);
+    color: var(--dark);
+    padding: 0 5px;
+}
+
+.row form .my-form-outline > *:not(div) {
+    border: 1px solid var(--dark);
+    border-radius: 3px;
+    padding-left: 10px;
+}
+
+.row form .my-form-outline > textarea {
+    height: 100px;
+    padding-top: 10px;
+}
+
+.my-form-outline input[type="file"] {
+    padding: 11px 0 11px 20px;
+    width: 100%
+}

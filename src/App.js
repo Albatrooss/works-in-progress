@@ -9,7 +9,8 @@ import {
   Redirect
 } from 'react-router-dom';
 
-import './App.css';
+import './myStyles/App.css';
+import './myStyles/myOutline.css'
 
 import dotenv from 'dotenv';
 
@@ -45,172 +46,172 @@ function App() {
 
   return ( <
       >
-      <
+    <
       BrowserRouter >
       <
-      NavBar user = {
-        user
-      }
-      /> <
-      div className = 'main-body' >
-      <
-      Switch >
-      <
-      Route exact path = '/'
-      render = {
-        () => < Home user = {
+        NavBar user={
           user
         }
-        />} / >
+      /> <
+      div className='main-body' >
         <
-        Route exact path = '/about'
-        render = {
-          () => < About user = {
-            user
-          }
-          />} / >
+      Switch >
           <
-          Route path = '/classes'
-          render = {
-            ({
-              history
-            }) => (
-              userService.getUser() ?
-              <
-              Classes user = {
+            Route exact path='/'
+            render={
+              () => < Home user={
                 user
               }
-              history = {
-                history
-              }
-              /> : <
-              Redirect to = '/login' / >
-            )
-          }
-          /> <
-          Route path = '/collabs'
-          render = {
-            ({
-              history
-            }) => (
-              userService.getUser() ?
-              <
-              Collabs user = {
+              />} />
+          <
+            Route exact path='/about'
+            render={
+              () => < About user={
                 user
               }
-              history = {
-                history
-              }
-              /> : <
-              Redirect to = '/login' / >
-            )
-          }
-          /> <
-          Route path = '/my-classes'
-          render = {
-            () => (
-              userService.getUser() ?
-              <
-              MyClasses user = {
-                user
-              }
-              /> : <
-              Redirect to = '/login' / >
-            )
-          }
-          /> <
-          Route path = '/settings'
-          render = {
-            () => < Settings user = {
-              user
-            }
-            />} / >
-            <
-            Route path = '/signup'
-            render = {
+              />} />
+          <
+            Route path='/classes'
+            render={
               ({
                 history
-              }) => < Signup history = {
-                history
-              }
-              handleSignUp = {
-                handleSignupLogin
-              }
-              />} / >
-              <
-              Route path = '/login'
-              render = {
-                ({
-                  history
-                }) => < Login history = {
-                  history
-                }
-                handleLogin = {
-                  handleSignupLogin
-                }
-                />} / >
-                <
-                Route path = '/logout'
-                render = {
-                  ({
-                    history
-                  }) => {
-                    userService.logout();
-                    history.push('/');
-                  }
-                }
-                /> <
-                Route path = '/class/:id'
-                render = {
-                  () => (
-                    userService.getUser() ?
+              }) => (
+                  userService.getUser() ?
                     <
-                    ClassPage user = {
-                      user
-                    }
-                    /> : <
-                    Redirect to = '/login' / >
-                  )
-                }
-                />
-
-                {
-                  user &&
-                    <
-                    Route exact path = '/admin'
-                  render = {
-                    () => (
-                      process.env.REACT_APP_ADMINS.split(' ').includes(user._id) ?
-                      <
-                      Admin user = {
+                      Classes user={
                         user
                       }
-                      /> : <
-                      h1 className = "red-text denied" > ACCESS DENIED < /h1>
+                      history={
+                        history
+                      }
+                    /> : <
+                      Redirect to='/login' />
+                )
+            }
+          /> <
+            Route path='/collabs'
+            render={
+              ({
+                history
+              }) => (
+                  userService.getUser() ?
+                    <
+                      Collabs user={
+                        user
+                      }
+                      history={
+                        history
+                      }
+                    /> : <
+                      Redirect to='/login' />
+                )
+            }
+          /> <
+            Route path='/my-classes'
+            render={
+              () => (
+                userService.getUser() ?
+                  <
+                    MyClasses user={
+                      user
+                    }
+                  /> : <
+                    Redirect to='/login' />
+              )
+            }
+          /> <
+            Route path='/settings'
+            render={
+              () => < Settings user={
+                user
+              }
+              />} />
+          <
+            Route path='/signup'
+            render={
+              ({
+                history
+              }) => < Signup history={
+                history
+              }
+                handleSignUp={
+                  handleSignupLogin
+                }
+                />} />
+          <
+            Route path='/login'
+            render={
+              ({
+                history
+              }) => < Login history={
+                history
+              }
+                handleLogin={
+                  handleSignupLogin
+                }
+                />} />
+          <
+            Route path='/logout'
+            render={
+              ({
+                history
+              }) => {
+                userService.logout();
+                history.push('/');
+              }
+            }
+          /> <
+            Route path='/class/:id'
+            render={
+              () => (
+                userService.getUser() ?
+                  <
+                    ClassPage user={
+                      user
+                    }
+                  /> : <
+                    Redirect to='/login' />
+              )
+            }
+          />
+
+          {
+            user &&
+            <
+              Route exact path='/admin'
+              render={
+                () => (
+                  process.env.REACT_APP_ADMINS.split(' ').includes(user._id) ?
+                    <
+                      Admin user={
+                        user
+                      }
+                    /> : <
+                      h1 className="red-text denied" > ACCESS DENIED < /h1>
                     )
                   }
                   />} {
-                  user &&
-                    <
-                    Route path = '/admin/:id'
-                  render = {
-                    () => (
-                      process.env.REACT_APP_ADMINS.split(' ').includes(user._id) ?
-                      <
-                      AdminOneClass user = {
-                        user
-                      }
-                      /> : <
-                      h1 className = "red-text denied" > ACCESS DENIED < /h1>
+                        user &&
+                        <
+                          Route path='/admin/:id'
+                          render={
+                            () => (
+                              process.env.REACT_APP_ADMINS.split(' ').includes(user._id) ?
+                                <
+                                  AdminOneClass user={
+                                    user
+                                  }
+                                /> : <
+                      h1 className="red-text denied" > ACCESS DENIED < /h1>
                     )
                   }
                   />} < /
                   Switch > <
                     /div> <
-                  Footer user = {
-                    user
-                  }
-                  /> < /
+                                    Footer user={
+                                      user
+                                    }
+                                  /> < /
                   BrowserRouter > <
                     />
                 )

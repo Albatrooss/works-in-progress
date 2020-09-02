@@ -11,37 +11,7 @@ div.MuiInputBase-root input.MuiOutlinedInput-input {
     border-bottom: none
 }
 
-.my-form-outline {
-    position: relative;
-}
-.my-form-outline.hidden {
-    display: none;
-}
 
-.row form .my-form-outline > div {
-    position: absolute;
-    left: 20px;
-    top: -10px;
-    background-color: var(--white);
-    color: var(--dark);
-    padding: 0 5px;
-}
-
-.row form .my-form-outline > *:not(div) {
-    border: 1px solid var(--dark);
-    border-radius: 3px;
-    padding-left: 10px;
-}
-
-.row form .my-form-outline > textarea {
-    height: 100px;
-    padding-top: 10px;
-}
-
-.my-form-outline input[type="file"] {
-    padding: 11px 0 11px 20px;
-    width: 100%
-}
 .row form .my-create-class-btn {
     display: flex;
     justify-content: center;
@@ -129,9 +99,20 @@ div.MuiInputBase-root input.MuiOutlinedInput-input {
 
 /* ------------- TOP LIST ---------------- */
 
+.list-class:hover {
+    background-color: var(--dark);
+    color: var(--white);
+}
+
 .list-class {
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    border-top: 1px solid var(--dark);
+    border-bottom: 1px solid var(--dark);
+    border-radius: 3px;
+    height: 30px;
+    color: var(--dark);
 }
 
 .enrolled {
@@ -149,7 +130,24 @@ div.MuiInputBase-root input.MuiOutlinedInput-input {
     flex: 1;
 }
 
+.rest button:hover {
+    background-color: #ccc;
+}
+
+.rest button:first-child {
+    margin-right: 5px;
+}
+
 @media only screen and (min-width: 993px) {
+
+    /* ------------------------------ TOP LIST ------------------------------------------- */
+
+    .list-class {
+        border-left: 1px solid var(--dark);
+        border-right: 1px solid var(--dark);
+    }
+
+
     .row form .my-form-outline .collab-sel,
     .row form .my-form-outline .icons-sel {
         width: 120%;

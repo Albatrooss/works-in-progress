@@ -18,6 +18,7 @@ app.use('/api/users', require('./routes/api/users'));
 app.use(require('./config/auth'));
 app.use('/api/classes', require('./routes/api/classes'));
 app.use('/api/upload', require('./routes/api/upload'));
+app.use('/api/requests', require('./routes/api/requests'));
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
