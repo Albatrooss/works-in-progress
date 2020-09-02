@@ -21,7 +21,7 @@ const createSongRequest = async (formData) => {
   }
 }
 
-const getAllSongsRequests = asyn() => {
+const getAllSongsRequests = async () => {
   try {
     let response = await fetch(BASE_URL, {
       method: 'POST',

@@ -11,7 +11,6 @@ const createJWT = user => {
 }
 
 const create = async (req, res) => {
-  console.log(req.headers.authorization)
   try {
     let newSongReq = new songRequest(req.body);
     let result = await newSongReq.save();

@@ -17,6 +17,7 @@ export default function MyClasses({ user }) {
     song: '',
     dance: ''
   })
+  const [songMsg, setSongMsg] = useState('');
 
   const handleDelete = async (clss) => {
     try {
@@ -35,14 +36,19 @@ export default function MyClasses({ user }) {
     setSongForm({
       ...songForm,
       [e.target.name]: e.target.value
-    })
+    });
+    setSongMsg('');
   }
 
   const handleSongSubmit = async e => {
     e.preventDefault();
     try {
       let res = await requestService.createSongRequest(songForm)
-      console.log(res)
+      setSongForm({
+        song: '',
+        dance: ''
+      });
+      setSongMsg('Thanks for your Request!');
     } catch (err) {
       console.log('err: ', err)
     }
@@ -93,12 +99,13 @@ export default function MyClasses({ user }) {
             <p className="label-class non-title">Request a Song/Dance</p>
             <div className="input-field col s12 my-form-outline">
               <div className="my-label">Song</div>
-              <input type="text" name="song" required onChange={handleSongChange} />
+              <input type="text" name="song" value={songForm.song} onChange={handleSongChange} />
             </div>
             <div className="input-field col s12 my-form-outline">
               <div className="my-label">Dance Type</div>
-              <input type="text" name="dance" required onChange={handleSongChange} />
+              <input type="text" name="dance" value={songForm.dance} onChange={handleSongChange} />
             </div>
+            <div className="col s12 l10 offset-l1"><p>{songMsg}</p></div>
             <button className='btn' type="submit" >Submit</button>
           </form>
         </div>
