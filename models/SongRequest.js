@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const songReqSchema = new Schema({
   song: String,
-  dance: String
+  dance: String,
+  user: { type: Schema.Types.ObjectId, ref: 'User' }
 }, {
   timestamps: true
 })

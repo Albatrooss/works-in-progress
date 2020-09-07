@@ -185,6 +185,11 @@
 }
 
 @media only screen and (min-width: 992px) {
+
+    .row .col.offset-l2 {
+        margin-top: 32px;
+    }
+
     .inner-class-card {
         width: 100%;
     }

@@ -13,6 +13,8 @@ export default function Classes({ user, history }) {
     async function oneTime() {
       try {
         let temp = await classService.getClasses();
+        console.log(temp);
+        if (temp.err) return;
         setClasses(temp.classes);
       } catch (err) {
         setErrMessage(err.message)
@@ -30,7 +32,7 @@ export default function Classes({ user, history }) {
         </div>
         <p className="red-text">{errMessage}</p>
         <ul className="col s12 l6 offset-l3">
-          {classes.map((clss, i) => <li key={`class-${i}`}><ClassCard history={history} clss={clss} user={user} /></li>)}
+          {classes.length > 0 ? classes.map((clss, i) => <li key={`class-${i}`}><ClassCard history={history} clss={clss} user={user} /></li>) : <h3>COMING SOON</h3>}
         </ul>
       </div>
     </div>

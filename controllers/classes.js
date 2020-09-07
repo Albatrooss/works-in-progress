@@ -68,7 +68,7 @@ const getClasses = async (req, res) => {
       });
     }
   } catch (err) {
-    res.status(400).json({
+    res.status(500).json({
       err: 'Something went wrong..'
     })
   }
@@ -92,7 +92,7 @@ const getCollabs = async (req, res) => {
       });
     }
   } catch (err) {
-    res.status(400).json({
+    res.status(500).json({
       err: 'Something went wrong..'
     })
   }

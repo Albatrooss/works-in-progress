@@ -1,9 +1,6 @@
 import React from 'react'
 import './Classes.css';
 import { Link } from 'react-router-dom'
-import classService from '../../utils/classService';
-
-
 
 export default function MyClassCard({ clss, handleDelete }) {
 

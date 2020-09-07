@@ -5,13 +5,17 @@ import './ClassPage.css';
 import ReactPlayer from 'react-player';
 
 import classService from '../../utils/classService';
+import amazonService from '../../utils/amazon';
 
 export default function ClassPage({ user }) {
   const { id } = useParams()
   const [clss, setClss] = useState({ enrolled: [] });
   const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [uploaded, setUploaded] = useState(false);
   const [errMessage, setErrMessage] = useState('');
   const [enrolled, setEnrolled] = useState(user && clss.enrolled.includes(user._id));
+  const [file, setFile] = useState('');
 
   const handleEnroll = async e => {
     e.preventDefault();
@@ -21,10 +25,10 @@ export default function ClassPage({ user }) {
       if (response._id === clss._id) {
         setEnrolled(true);
       }
-      setLoading(false)
     } catch (err) {
       setErrMessage(err.message);
     }
+    setLoading(false)
   }
 
   let enrollBtn = <button className="btn btn-large" onClick={handleEnroll}>Enroll in this {clss.type === 'D' ? 'Class' : 'Collab'}!</button>;
@@ -42,12 +46,21 @@ export default function ClassPage({ user }) {
     </div>
   }
 
-  const handleChange = () => {
-
+  const handleChange = (e) => {
+    e.preventDefault();
+    setFile(e.target.files[0]);
   }
 
-  const handleSubmit = () => {
-    alert('Thanks for submiting your video!')
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      let res = await amazonService.uploadFromUser(file, user._id);
+    } catch (err) {
+      alert('something went wrong..')
+    }
+    setLoading(false)
+    setSent(true);
   }
 
   useEffect(() => {
@@ -55,6 +68,8 @@ export default function ClassPage({ user }) {
       try {
         let response = await classService.getOne(id);
         setClss(response);
+        let uploaded = await amazonService.checkUpload(id);
+        if (uploaded) setUploaded(true);
       } catch (err) {
         setErrMessage(err.message)
       }
@@ -81,12 +96,23 @@ export default function ClassPage({ user }) {
         </div>
         {clss.type === 'C' &&
           <div className="col s12 l6 offset-l3 my-outline-class">
-            <p className="label-class">Submit you video</p>
-            <h6>Mastered this dance? Submit your video below to be featured in this months Collab!</h6>
-            <form onClick={handleSubmit} className='submit-form'>
+            <p className="label-class">Submit your video</p>
+            {!uploaded && <h6>Mastered this dance? Submit your video below to be featured in this months Collab!</h6>}
+            {!uploaded && !sent && <form onSubmit={handleSubmit} className='submit-form'>
               <input type="file" name='file' onChange={handleChange} />
-              <button type="submit" className="btn">Submit</button>
-            </form>
+              {loading ? <div className="preloader-wrapper big active">
+                <div className="spinner-layer spinner-blue-only">
+                  <div className="circle-clipper left">
+                    <div className="circle"></div>
+                  </div><div className="gap-patch">
+                    <div className="circle"></div>
+                  </div><div className="circle-clipper right">
+                    <div className="circle"></div>
+                  </div>
+                </div>
+              </div> : <button type="submit" className="btn">Submit</button>}
+            </form>}
+            {(sent || uploaded) && <h6>Thanks for Uploading! Check your email soon for the Collab!</h6>}
           </div>}
       </div>
     )

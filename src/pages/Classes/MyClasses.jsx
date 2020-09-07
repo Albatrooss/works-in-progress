@@ -43,7 +43,7 @@ export default function MyClasses({ user }) {
   const handleSongSubmit = async e => {
     e.preventDefault();
     try {
-      let res = await requestService.createSongRequest(songForm)
+      await requestService.createSongRequest(songForm)
       setSongForm({
         song: '',
         dance: ''

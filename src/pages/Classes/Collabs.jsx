@@ -13,7 +13,7 @@ export default function Classes({ user, history }) {
     async function oneTime() {
       try {
         let temp = await classService.getCollabs();
-        if (temp.err) throw new Error(temp.err)
+        if (temp.err) return;
         setClasses(temp.classes);
       } catch (err) {
         setErrMessage(err.message)
