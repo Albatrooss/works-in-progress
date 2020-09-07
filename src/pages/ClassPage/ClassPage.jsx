@@ -55,7 +55,7 @@ export default function ClassPage({ user }) {
     e.preventDefault();
     setLoading(true);
     try {
-      let res = await amazonService.uploadFromUser(file, user._id);
+      let res = await amazonService.uploadFromUser(file, user._id, id);
     } catch (err) {
       alert('something went wrong..')
     }
@@ -69,7 +69,8 @@ export default function ClassPage({ user }) {
         let response = await classService.getOne(id);
         setClss(response);
         let uploaded = await amazonService.checkUpload(id);
-        if (uploaded) setUploaded(true);
+        console.log(uploaded)
+        setUploaded(uploaded);
       } catch (err) {
         setErrMessage(err.message)
       }
@@ -97,21 +98,22 @@ export default function ClassPage({ user }) {
         {clss.type === 'C' &&
           <div className="col s12 l6 offset-l3 my-outline-class">
             <p className="label-class">Submit your video</p>
-            {!uploaded && <h6>Mastered this dance? Submit your video below to be featured in this months Collab!</h6>}
-            {!uploaded && !sent && <form onSubmit={handleSubmit} className='submit-form'>
-              <input type="file" name='file' onChange={handleChange} />
-              {loading ? <div className="preloader-wrapper big active">
-                <div className="spinner-layer spinner-blue-only">
-                  <div className="circle-clipper left">
-                    <div className="circle"></div>
-                  </div><div className="gap-patch">
-                    <div className="circle"></div>
-                  </div><div className="circle-clipper right">
-                    <div className="circle"></div>
+            {!uploaded && !sent && <><h6>Mastered this dance? Submit your video below to be featured in this months Collab!</h6>
+              <form onSubmit={handleSubmit} className='submit-form'>
+                <input type="file" name='file' onChange={handleChange} />
+                {loading ? <div className="preloader-wrapper big active">
+                  <div className="spinner-layer spinner-blue-only">
+                    <div className="circle-clipper left">
+                      <div className="circle"></div>
+                    </div><div className="gap-patch">
+                      <div className="circle"></div>
+                    </div><div className="circle-clipper right">
+                      <div className="circle"></div>
+                    </div>
                   </div>
-                </div>
-              </div> : <button type="submit" className="btn">Submit</button>}
-            </form>}
+                </div> : <button type="submit" className="btn">Submit</button>}
+              </form>
+            </>}
             {(sent || uploaded) && <h6>Thanks for Uploading! Check your email soon for the Collab!</h6>}
           </div>}
       </div>

@@ -33,7 +33,7 @@ const uploadAndCreateDanceClass = async (data) => {
   return response.json()
 }
 
-const uploadFromUser = async (file, userId) => {
+const uploadFromUser = async (file, userId, classId) => {
   let response = await uploadToAmazon(file, 'user-upload');
   if (response.ok) {
     let video = response.json();
@@ -45,6 +45,7 @@ const uploadFromUser = async (file, userId) => {
       'Authorization': 'Bearer ' + tokenServices.getToken(),
       body: JSON.stringify({
         user: userId,
+        class: classId,
         file: video.videoUrl
       })
     });
@@ -69,19 +70,27 @@ async function uploadToAmazon(file, where) {
 
 const checkUpload = async (classId) => {
   let userId = tokenServices.getUserFromToken()._id;
-  let response = await fetch(BASE_URL + 'check', {
-    method: 'POST',
-    headers: new Headers({
-      'Content-Type': 'application/json'
-    }),
-    'Authorization': 'Bearer ' + tokenServices.getToken(),
-    body: JSON.stringify({
-      user: userId,
-      class: classId
-    })
-  });
-  console.log('here')
-  return response;
+  try {
+    let response = await fetch(BASE_URL + 'check', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      'Authorization': 'Bearer ' + tokenServices.getToken(),
+      body: JSON.stringify({
+        user: userId,
+        class: classId
+      })
+    });
+    let resJSON = await response.json()
+    if (resJSON.uploaded) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (err) {
+    return false;
+  }
 }
 
 export default {

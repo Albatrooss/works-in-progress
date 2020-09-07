@@ -37,13 +37,11 @@ router.post('/user-save', async (req, res) => {
 
 router.post('/check', async (req, res) => {
   try {
-    let resp = await UserVideo.find({ user: req.body.userId, class: req.cody.classId })
-    if (resp) {
-      console.log(resp);
-      res.send(true);
-    }
+    let resp = await UserVideo.findOne({ class: req.body.class, user: req.body.user })
+    if (resp) return res.json({ uploaded: true });
+    return res.status(204).json({ uploaded: false })
   } catch (err) {
-    res.send(false);
+    res.status(500).json({ uploaded: false, err: err });
   }
 })
 
