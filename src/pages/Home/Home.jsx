@@ -21,7 +21,7 @@ export default function Home() {
           </div>
         </div>
         <div className="col s12 l6 offset-l3">
-          <p>The goal of Works in Progress Movement Studio is to combine dance andpilates in order to promote the benefits of movement in an accessible way. </p>
+          <p>The goal of Works in Progress Movement Studio is to combine dance and pilates in order to promote the benefits of movement in an accessible way. </p>
           <hr />
           <p><strong>Caitlin Elmslie, MA BSc BA <br />
             Movement Educator <br />
