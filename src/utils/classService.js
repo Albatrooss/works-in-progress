@@ -62,6 +62,20 @@ const getCollabs = async () => {
   }
 }
 
+const getMoveBDs = async () => {
+  try {
+    let response = await fetch(BASE_URL + 'move-bds', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+    })
+    return await response.json();
+  } catch (err) {
+    return err
+  }
+}
+
 const getOne = async (id) => {
   try {
     let response = await fetch(BASE_URL + id, {
@@ -192,6 +206,7 @@ export default {
   getAllAdmin,
   getClasses,
   getCollabs,
+  getMoveBDs,
   getOne,
   getOneAdmin,
   enroll,

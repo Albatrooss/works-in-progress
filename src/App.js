@@ -22,6 +22,7 @@ import Settings from './pages/Settings/Settings';
 import About from './pages/About/About';
 import Classes from './pages/Classes/Classes';
 import Collabs from './pages/Classes/Collabs';
+import MoveBD from './pages/Classes/MoveBD';
 import MyClasses from './pages/Classes/MyClasses';
 import Signup from './pages/Signup/Signup'
 import Login from './pages/Signup/Login'
@@ -106,7 +107,9 @@ function App() {
                       Redirect to='/login' />
                 )
             }
-          /> <
+          />
+          <Route path='/movement-breakdown' render={({ history }) => (userService.getUser() ? <MoveBD user={user} history={history} /> : <Redirect to='/login' />)} />
+          <
             Route path='/my-classes'
             render={
               () => (

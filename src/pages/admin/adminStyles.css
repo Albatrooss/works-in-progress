@@ -138,6 +138,14 @@ div.MuiInputBase-root input.MuiOutlinedInput-input {
     margin-right: 5px;
 }
 
+.my-label {
+    z-index: 5;
+}
+
+.my-label.drop-down-label {
+    margin-left: 5px;
+}
+
 @media only screen and (min-width: 993px) {
 
     /* ------------------------------ TOP LIST ------------------------------------------- */

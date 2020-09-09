@@ -98,6 +98,27 @@ const getCollabs = async (req, res) => {
   }
 }
 
+const getMoveBDs = async (req, res) => {
+  try {
+    let moveBDs = await DanceClass.find({
+      type: 'M'
+    });
+    if (moveBDs.length > 0) {
+      res.json({
+        classes: moveBDs
+      })
+    } else {
+      res.status(404).json({
+        err: 'No move breakdowns found'
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
+      err: 'Something went wrong..'
+    })
+  }
+}
+
 const add = async (req, res) => {
   let newClass = new DanceClass(req.body);
   try {
@@ -329,6 +350,7 @@ module.exports = {
   getAll,
   getClasses,
   getCollabs,
+  getMoveBDs,
   getLegacy,
   add,
   getOne,

@@ -46,6 +46,7 @@ export default function Navbar({ handleClick, dropped, user }) {
           {/* <li><Link to="/about">About</Link></li> */}
           <li><Link to="/classes">Classes</Link></li>
           <li><Link to="/collabs">Collabs</Link></li>
+          <li><Link to="/movement-breakdown">Movement Breakdown</Link></li>
           {dropdown}
         </ul>
       </div>

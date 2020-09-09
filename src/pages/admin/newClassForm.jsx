@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 
 import './adminStyles.css'
 
+import Dropdown from '../../components/Dropdown/dropdown';
 import amazonService from '../../utils/amazon';
 
 export default function NewClassForm() {
+  const dropdown = [{ name: 'Collab', value: 'C', num: 0 }, { name: 'Class', value: 'D', num: 1 }, { name: 'Move', value: 'M', num: 2 }]
   const [formData, setFormData] = useState({
     type: 'C',
     className: '',
@@ -15,6 +17,7 @@ export default function NewClassForm() {
     file: '',
     icon: 1
   });
+  const [dropSelect, setDropSelect] = useState(0);
   const [iconsShowing, setIconsShowing] = useState(false);
   const [loading, setLoading] = useState(false);
   const [newClass, setNewClass] = useState(false);
@@ -38,6 +41,15 @@ export default function NewClassForm() {
         [e.target.name]: e.target.value
       })
     }
+  }
+
+  const handleSelect = type => {
+
+    setFormData({
+      ...formData,
+      type: dropdown[type].value
+    })
+    setDropSelect(type);
   }
 
   const handleCollab = e => {
@@ -141,8 +153,8 @@ export default function NewClassForm() {
               <input type="text" name="instructor" required onChange={handleChange} />
             </div>
             <div className="input-field col s6 l3 my-form-outline">
-              <button className={`collab-sel my-form-outline ${formData.type === 'C' ? 'is-collab' : 'not-collab'}`} onClick={handleCollab}><p>Collab</p></button>
-              <div className="my-label collab-label">Type</div>
+              <div className="my-label drop-down-label">Type</div>
+              <Dropdown selected={dropSelect} items={dropdown} handleSelect={handleSelect} />
             </div>
             <div className="input-field col s6 l3 my-form-outline">
               <button onClick={showIcons} className={`icons-sel my-form-outline`} ><img src={`images/b-w_pic0${formData.icon}.png`} alt="icon button" /></button>
@@ -153,11 +165,11 @@ export default function NewClassForm() {
               <div className="my-label">Description</div>
               <textarea name="description" cols="30" rows="20" required onChange={handleChange} />
             </div>
-            <div className={`input-field col s12 l6 my-form-outline ${formData.type === 'D' ? 'hidden' : ''}`}>
+            <div className={`input-field col s12 l6 my-form-outline ${formData.type === 'C' ? '' : 'hidden'}`}>
               <div className="my-label">Date</div>
               <input type="date" value={formData.date} name="date" required onChange={handleChange} />
             </div>
-            <div className={`input-field col s12 l6 my-form-outline ${formData.type === 'D' ? 'hidden' : ''}`}>
+            <div className={`input-field col s12 l6 my-form-outline ${formData.type === 'C' ? '' : 'hidden'}`}>
               <div className="my-label">Time</div>
               <input type="time" value={formData.time} name="time" required onChange={handleChange} />
             </div>
