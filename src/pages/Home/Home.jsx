@@ -1,10 +1,40 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
+import classService from '../../utils/classService';
 import Schedule from '../../components/Schedule/Schedule';
+import { ServerlessApplicationRepository } from 'aws-sdk';
 
 export default function Home() {
+
+  const [enrolledInLive, setEnrolledInLive] = useState(false);
+
+  const enrollInLive = async () => {
+    try {
+      let enrolled = await classService.enrollLive('5f64e1e7c070d8f7980d0ca7');
+      setEnrolledInLive(true);
+    } catch (err) {
+      alert(err);
+    }
+  }
+
+  useEffect(() => {
+    async function oneTime() {
+      try {
+        let response = await classService.checkLiveEnrolled('5f64e1e7c070d8f7980d0ca7');
+        setEnrolledInLive(response.enrolled);
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    oneTime();
+  }, [])
+
   return (
     <div className='home center-align'>
+      <div>
+        <h3>NEW! Live Pilates Class</h3>
+        <h4>Sundays at 4:00PM EST</h4>
+        {enrolledInLive ? <p>Check your email for the zoom link. See you Sunday!</p> : <button className="btn" onClick={enrollInLive}>Enroll Now!</button>}
+      </div>
       <Schedule />
       <img src="images/FredAndGinger.png" alt="Fred + Ginger" style={{ maxWidth: '100%' }} />
       <div className="row">

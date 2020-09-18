@@ -183,9 +183,78 @@ const unEnroll = async (clss, userId) => {
 //   }
 // }
 
+const getLive = async id => {
+  const token = tokenService.getToken();
+  try {
+    let response = await fetch(BASE_URL + 'admin/live/' + id, {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      'Authorization': 'Bearer: ' + token
+    })
+    console.log(response)
+    if (response.ok) {
+      return await response.json();
+    } else {
+      throw new Error(response.err);
+    }
+  } catch (err) {
+    return err;
+  }
+}
+
+const enrollLive = async id => {
+  const token = tokenService.getToken();
+  const userId = tokenService.getUserFromToken()._id;
+
+  try {
+    let response = await fetch(BASE_URL + 'live/enroll/' + id, {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify({
+        id: userId
+      })
+    })
+    if (response.ok) {
+      return await response.json();
+    } else {
+      throw new Error(response.err);
+    }
+  } catch (err) {
+    return err;
+  }
+}
+
+const checkLiveEnrolled = async id => {
+  const token = tokenService.getToken();
+  const userId = tokenService.getUserFromToken()._id;
+
+  try {
+    let response = await fetch(BASE_URL + 'checklive/' + id, {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify({
+        id: userId
+      })
+    })
+    if (response.ok) {
+      return await response.json();
+    } else {
+      throw new Error(response.err);
+    }
+  } catch (err) {
+    return err;
+  }
+}
+
 const deleteOne = async id => {
   try {
-    let response = fetch(BASE_URL + 'delete/' + id, {
+    let response = await fetch(BASE_URL + 'delete/' + id, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'
@@ -211,7 +280,10 @@ export default {
   getOneAdmin,
   enroll,
   unEnroll,
+  enrollLive,
   getMine,
+  getLive,
+  checkLiveEnrolled,
   // updateOne
   deleteOne
 }

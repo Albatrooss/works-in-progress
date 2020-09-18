@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
+const DanceClass = require('./DanceClass');
 
 const SALT_ROUNDS = 6;
 

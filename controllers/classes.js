@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const DanceClass = require('../models/DanceClass');
+const LiveClass = require('../models/LiveClass');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
@@ -345,6 +346,67 @@ const getAllPopulated = async (req, res) => {
   }
 }
 
+const getAllLive = async (req, res) => {
+  try {
+    let live = await LiveClass.find({}).populate('enrolled');
+    res.json(live);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}
+
+const getLive = async (req, res) => {
+  try {
+    let live = await (await LiveClass.findOne({ _id: req.params.id }));
+    let users = await User.find({ _id: { $in: live.enrolled } }).lean();
+
+    const getData = async () => {
+      return Promise.all(users.map(async user => {
+        let num = await DanceClass.countDocuments({ enrolled: user._id });
+        user.numOfClasses = num;
+        return user;
+      }))
+    }
+
+    let counted = await getData();
+    res.json({ live, users: counted });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}
+
+const addLive = async (req, res) => {
+  let live = new LiveClass(req.body);
+  try {
+    let saved = await live.save();
+    res.json(saved);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}
+
+const enrollLive = async (req, res) => {
+  try {
+    let live = await LiveClass.findOneAndUpdate({ _id: req.params.id }, { $push: { enrolled: req.body.id } });
+    res.json(live);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}
+
+const checkLive = async (req, res) => {
+  try {
+    let live = await LiveClass.findOne({ _id: req.params.id });
+    if (live.enrolled.includes(req.body.id)) {
+      res.json({ enrolled: true })
+    } else {
+      res.json({ enrolled: true })
+    }
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
+
 
 module.exports = {
   getAll,
@@ -361,5 +423,10 @@ module.exports = {
   enroll,
   unenroll,
   getAllPopulated,
-  getOnePopulated
+  getOnePopulated,
+  getAllLive,
+  getLive,
+  addLive,
+  enrollLive,
+  checkLive
 }

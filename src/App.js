@@ -29,6 +29,7 @@ import Login from './pages/Signup/Login'
 import Admin from './pages/admin/admin'
 import AdminOneClass from './pages/admin/adminOnePage';
 import ClassPage from './pages/ClassPage/ClassPage';
+import LiveList from './pages/admin/LiveList';
 
 import userService from './utils/userService';
 
@@ -83,6 +84,16 @@ function App() {
             {user && <Route exact path='/admin' render={() => (
               process.env.REACT_APP_ADMINS.split(' ').includes(user._id) ?
                 <Admin user={user} /> : <h1 className="red-text denied"> ACCESS DENIED </h1>
+            )
+            } />}
+            {/* {user && <Route path='/admin/live' render={(props) => (
+              process.env.REACT_APP_ADMINS.split(' ').includes(user._id) ?
+                <AdminOneClass user={user} history={props.history} /> : <h1 className="red-text denied" > ACCESS DENIED </h1>
+            )
+            } />} */}
+            {user && <Route path='/admin/live/:id' render={(props) => (
+              process.env.REACT_APP_ADMINS.split(' ').includes(user._id) ?
+                <LiveList user={user} history={props.history} /> : <h1 className="red-text denied" > ACCESS DENIED </h1>
             )
             } />}
             {user && <Route path='/admin/:id' render={(props) => (
