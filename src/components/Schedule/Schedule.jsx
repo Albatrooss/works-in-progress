@@ -30,7 +30,7 @@ export default function Schedule() {
   return (
     <div className="row schedule">
       <div className='col s12 l8 offset-l2 my-outline-class'>
-        <p className='label-class'>Available Now</p>
+        <p className='label-class'>Pre-Recorded Classes</p>
         <p>{message}</p>
         {classes.map(clss => <Dlass key={clss._id} clss={clss} />)}
       </div>

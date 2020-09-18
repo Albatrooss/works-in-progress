@@ -32,7 +32,7 @@ export default function Home() {
     <div className='home center-align'>
       <div>
         <h3>NEW! Live Pilates Class</h3>
-        <h4>Sundays at 4:00PM EST</h4>
+        <h4>Sundays at 3:00PM EST</h4>
         {enrolledInLive ? <p>Check your email for the zoom link. See you Sunday!</p> : <button className="btn" onClick={enrollInLive}>Enroll Now!</button>}
       </div>
       <Schedule />

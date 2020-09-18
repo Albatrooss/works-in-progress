@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NewClassForm from './newClassForm';
+import { Link } from 'react-router-dom';
 // import UpdateClassForm from './UpdateClassForm';
 
 import './adminStyles.css';
@@ -75,7 +76,7 @@ export default function Admin(props) {
           <NewClassForm />
         </div>
       </div>
-      <a href="mailto:hello@timrobillard.com;robillardtim@gmail.com">Email</a>
+      <Link to='/admin/live/5f64e1e7c070d8f7980d0ca7'>Go to Live Details</Link>
     </div >
   )
 }
