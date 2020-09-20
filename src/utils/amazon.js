@@ -33,6 +33,26 @@ const uploadAndCreateDanceClass = async (data) => {
   return response.json()
 }
 
+const createLiveClass = async (data) => {
+  try {
+    let classResponse = await fetch('/api/classes/admin/live/add', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      'Authorization': 'Bearer ' + tokenServices.getToken(),
+      body: JSON.stringify(data)
+    })
+    if (classResponse.ok) {
+      return classResponse.json();
+    } else {
+      return classResponse.json();
+    }
+  } catch (err) {
+    return err;
+  }
+}
+
 const uploadFromUser = async (file, userId, classId) => {
   let response = await uploadToAmazon(file, 'user-upload');
   if (response.ok) {
@@ -95,6 +115,7 @@ const checkUpload = async (classId) => {
 
 export default {
   uploadAndCreateDanceClass,
+  createLiveClass,
   uploadFromUser,
   checkUpload
 }

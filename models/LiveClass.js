@@ -11,7 +11,8 @@ const liveSchema = new Schema({
     required: true
   },
   dayOfWeek: { type: Number, min: 1, max: 7 },
-  zoomLink: String,
+  time: { type: Number, min: 0, max: 23.5 },
+  zoomLink: { type: String },
   instructor: {
     type: String,
     default: 'Caitline Elmslie'

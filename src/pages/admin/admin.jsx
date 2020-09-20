@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NewClassForm from './newClassForm';
+import NewLiveClassForm from './NewLiveClassForm';
 import { Link } from 'react-router-dom';
 // import UpdateClassForm from './UpdateClassForm';
 
@@ -16,6 +17,7 @@ export default function Admin(props) {
 
   const [whatsShowing, setWhatsShowing] = useState({
     newClass: false,
+    newLiveClass: false,
     updateClass: false
   });
 
@@ -74,6 +76,12 @@ export default function Admin(props) {
       <div className="row">
         <div className={whatsShowing.newClass ? 'new-class showing col s12 l6 offset-l3' : 'new-class hidden col s12 l6 offset-l3'}>
           <NewClassForm />
+        </div>
+      </div>
+      <h5 onClick={() => handleShowing('newLiveClass')}>Create a Live Class <i className="material-icons">arrow_drop_{whatsShowing.newLiveClass ? 'up' : 'down'}</i></h5>
+      <div className="row">
+        <div className={whatsShowing.newLiveClass ? 'new-class showing col s12 l6 offset-l3' : 'new-class hidden col s12 l6 offset-l3'}>
+          <NewLiveClassForm />
         </div>
       </div>
       <Link to='/admin/live/5f64e1e7c070d8f7980d0ca7'>Go to Live Details</Link>

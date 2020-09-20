@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import classService from '../../utils/classService';
 import Schedule from '../../components/Schedule/Schedule';
-import { ServerlessApplicationRepository } from 'aws-sdk';
 
-export default function Home() {
+import tokenService from '../../utils/tokenService';
+
+export default function Home({ user }) {
 
   const [enrolledInLive, setEnrolledInLive] = useState(false);
+  const [featuredLive, setFeaturedLive] = useState({});
 
   const enrollInLive = async () => {
     try {
-      let enrolled = await classService.enrollLive('5f64e1e7c070d8f7980d0ca7');
+      let enrolled = await classService.enrollLive(featuredLive._id);
       setEnrolledInLive(true);
     } catch (err) {
       alert(err);
@@ -19,8 +21,9 @@ export default function Home() {
   useEffect(() => {
     async function oneTime() {
       try {
-        let response = await classService.checkLiveEnrolled('5f64e1e7c070d8f7980d0ca7');
-        setEnrolledInLive(response.enrolled);
+        let response = await classService.getAllLive();
+        setFeaturedLive(response[0]);
+        setEnrolledInLive(checkFeaturedLiveEnrolled(response[0], tokenService.getUserFromToken(tokenService.getToken())._id));
       } catch (err) {
         console.log(err)
       }
@@ -30,11 +33,11 @@ export default function Home() {
 
   return (
     <div className='home center-align'>
-      <div>
+      { user && <div>
         <h3>NEW! Live Pilates Class</h3>
         <h4>Sundays at 3:00PM EST</h4>
         {enrolledInLive ? <p>Check your email for the zoom link. See you Sunday!</p> : <button className="btn" onClick={enrollInLive}>Enroll Now!</button>}
-      </div>
+      </div>}
       <Schedule />
       <img src="images/FredAndGinger.png" alt="Fred + Ginger" style={{ maxWidth: '100%' }} />
       <div className="row">
@@ -65,3 +68,11 @@ export default function Home() {
   )
 }
 
+function checkFeaturedLiveEnrolled(clss, userId) {
+  let enrolled = false;
+  clss.enrolled.forEach(user => {
+    if (user._id === userId) enrolled = true;
+  })
+  console.log('checked: ', enrolled);
+  return enrolled;
+}

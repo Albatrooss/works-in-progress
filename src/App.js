@@ -52,8 +52,8 @@ function App() {
         <NavBar user={user} />
         <div className='main-body'>
           <Switch>
-            <Route exact path='/' render={() => < Home user={user} />} />
-            <Route exact path='/about' render={() => < About user={user} />} />
+            <Route exact path='/' render={() => <Home user={user} />} />
+            <Route exact path='/about' render={() => <About user={user} />} />
             <Route path='/classes' render={({ history }) => (
               user ? <Classes user={user} history={history} /> : <Redirect to='/login' />
             )} />
